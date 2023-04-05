@@ -5,7 +5,7 @@ import VideoPlayerEmbed from "./Video";
 import Lottie from "react-lottie";
 import animationData from "./assets/99109-loading (1).json";
 import { useDispatch, useSelector } from "react-redux";
-const url = "https://api.wistia.com/v1/medias.json";
+const url = "https://api.wistia.com/v1/medias.json?type=Video";
 
 const options = {
   headers: {
@@ -39,11 +39,13 @@ function App() {
     Text: "",
   });
   const state = useSelector((state) => state);
-  console.log(state);
+  console.log(state.videoData);
   const dispatch = useDispatch();
   useEffect(() => {
     const fetchdata = async () => {
-      const result = await fetch(url, options).then((data) => data.json());
+      const result = await fetch(url, options)
+        .then((data) => data.json())
+        // .then((data) => data.filter((v, i) => console.log(v.type)));
 
       dispatch({ type: "FETCH_VIDEO", payload: result });
       const url2 = `https://api.wistia.com/v1/medias/${state.video}/captions.json`;
