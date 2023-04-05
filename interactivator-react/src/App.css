@@ -53,3 +53,47 @@
 #UPVIDEOS {
   width: 100%;
 }
+summary {
+  margin-top: 20px;
+  color: white;
+  text-align: left;
+}
+.VideoName {
+  color: white;
+}
+.btn {
+  min-width: 120px;
+  padding: 10px 16px;
+  margin-right: 6px;
+  background-color: transparent;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 20px;
+}
+.btn.on {
+  background-color: #ff6e30;
+  border: 0px;
+  opacity: 1;
+}
+h1 {
+  color: white;
+}
+.Interactives {
+  height: auto;
+  overflow-x: auto;
+}
+
+#textDisplayCode {
+  color: white;
+}
+.TextAreaSubtitles {
+  width: 440px;
+  height: 100px;
+  font-size: large;
+  background-color: #0A0A23;
+  color: white;
+}

@@ -72,58 +72,58 @@ class VideoPlayerEmbed extends React.Component {
     this.setState({ video: videoIDNAME[0].hashed_id });
     this.setState({ name: videoIDNAME[0].name });
   }
-  render() {
-    // console.log(this.props.videoData[0].name);
-    return (
-      <div>
-        <h2>{this.state.name}</h2>
-        <div
-          className="wistia_responsive_padding"
-          style={{ padding: "56.25% 0 0 0", position: "relative" }}
-        >
-          <div
-            className="wistia_responsive_wrapper"
-            style={{
-              height: "100%",
-              left: "0",
-              position: "absolute",
-              top: "0",
-              width: "100%",
-            }}
-          >
-            <iframe
-              src={`https://fast.wistia.com/embed/medias/${this.state.video}`}
-              title="1"
-              allowtransparency="true"
-              frameborder="0"
-              scrolling="no"
-              class="wistia_embed"
-              name="wistia_embed"
-              allowfullscreen=""
-              mozallowfullscreen=""
-              webkitallowfullscreen=""
-              oallowfullscreen=""
-              msallowfullscreen=""
-              width={"100%"}
-              height={"100%"}
-              alt=""
-            ></iframe>
-          </div>
-        </div>
-        <br></br>
-        <select
-          name="UPVideos"
-          id="UPVIDEOS"
-          onChange={(e) => this.changeVideo(e.target.value)}
-        >
-          {this.props.videoData.map((data) => (
-            <option value={data.name}>{data.name}</option>
-          ))}
-        </select>
-        <br></br>
-      </div>
-    );
-  }
+  // render() {
+  //   // console.log(this.props.videoData[0].name);
+  //   return (
+  //     <div>
+  //       <h2>{this.state.name}</h2>
+  //       <div
+  //         className="wistia_responsive_padding"
+  //         style={{ padding: "56.25% 0 0 0", position: "relative" }}
+  //       >
+  //         <div
+  //           className="wistia_responsive_wrapper"
+  //           style={{
+  //             height: "100%",
+  //             left: "0",
+  //             position: "absolute",
+  //             top: "0",
+  //             width: "100%",
+  //           }}
+  //         >
+  //           <iframe
+  //             src={`https://fast.wistia.com/embed/medias/${this.state.video}`}
+  //             title="1"
+  //             allowtransparency="true"
+  //             frameborder="0"
+  //             scrolling="no"
+  //             class="wistia_embed"
+  //             name="wistia_embed"
+  //             allowfullscreen=""
+  //             mozallowfullscreen=""
+  //             webkitallowfullscreen=""
+  //             oallowfullscreen=""
+  //             msallowfullscreen=""
+  //             width={"100%"}
+  //             height={"100%"}
+  //             alt=""
+  //           ></iframe>
+  //         </div>
+  //       </div>
+  //       <br></br>
+  //       <select
+  //         name="UPVideos"
+  //         id="UPVIDEOS"
+  //         onChange={(e) => this.changeVideo(e.target.value)}
+  //       >
+  //         {this.props.videoData.map((data) => (
+  //           <option value={data.name}>{data.name}</option>
+  //         ))}
+  //       </select>
+  //       <br></br>
+  //     </div>
+  //   );
+  // }
 
   // render() {
   //   return (
@@ -132,6 +132,14 @@ class VideoPlayerEmbed extends React.Component {
   //       dangerouslySetInnerHTML={this.createWistiaEmbed(this.props.embedId)} />
   //   )
   // }
+  render() {
+    return (
+      <div
+        ref={(el) => (this.wrapper = el)}
+        dangerouslySetInnerHTML={this.createWistiaEmbed(this.props.embedId)}
+      />
+    );
+  }
 }
 
 export default VideoPlayerEmbed;

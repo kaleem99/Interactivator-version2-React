@@ -1,0 +1,5 @@
+export const actionsObject = {
+  CHANGE_VIDEO: "CHANGE_VIDEO",
+  CHANGE_SUBTITLES: "CHANGE_SUBTITLES",
+  FETCH_VIDEO: "FETCH_VIDEO",
+};
