@@ -4,6 +4,8 @@ const initialState = {
   video: "",
   videoData: [],
   videoName: "",
+  subtitle: "",
+  subtitleState: false,
 };
 const url = "https://api.wistia.com/v1/medias.json";
 const options = {
@@ -17,7 +19,6 @@ const options = {
 export const fetchVideoReducer = (state = initialState, action) => {
   switch (action.type) {
     case "FETCH_VIDEO":
-      console.log(action);
       return {
         ...state,
         videoData: action.payload,
@@ -25,10 +26,21 @@ export const fetchVideoReducer = (state = initialState, action) => {
         videoName: action.payload[0].name,
       };
     case "CHANGE_VIDEO":
-      console.log(action.payload);
+      // console.log(action.payload);
       return {
         ...state,
         video: action.payload,
+      };
+    case "FETCH_SUBTITLE":
+      // console.log(action.payload);
+      return {
+        ...state,
+        subtitle: action.payload,
+      };
+    case "CHANGE_SUBTITLE_STATE":
+      return {
+        ...state,
+        subtitleState: action.payload,
       };
     default:
       return state;

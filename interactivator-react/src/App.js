@@ -5,6 +5,8 @@ import VideoPlayerEmbed from "./Video";
 import Lottie from "react-lottie";
 import animationData from "./assets/99109-loading (1).json";
 import { useDispatch, useSelector } from "react-redux";
+import WistiaEmbed from "./WistiaEmbed";
+// import { Wistia } from 'wistia/player';
 const url = "https://api.wistia.com/v1/medias.json?type=Video";
 
 const options = {
@@ -14,7 +16,6 @@ const options = {
   },
   method: "get",
 };
-const buttons = {};
 const styles = {
   fontFamily: "sans-serif",
   textAlign: "center",
@@ -30,27 +31,19 @@ const defaultOptions = {
   },
 };
 function App() {
-  const [videoData, setVideoData] = useState([]);
-  const [defaultVideoName, setDefaultVideoName] = useState("");
-  const [video, setVideo] = useState("");
-  const [transcripts, setTranscripts] = useState("");
-  const [InteractiveButtons, setInteractiveButtons] = useState({
-    Subtitles: false,
-    Text: "",
-  });
   const state = useSelector((state) => state);
-  console.log(state.videoData);
   const dispatch = useDispatch();
   useEffect(() => {
     const fetchdata = async () => {
-      const result = await fetch(url, options)
-        .then((data) => data.json())
-        // .then((data) => data.filter((v, i) => console.log(v.type)));
+      const result = await fetch(url, options).then((data) => data.json());
+      // .then((data) => data.filter((v, i) => console.log(v.type)));
 
       dispatch({ type: "FETCH_VIDEO", payload: result });
+      // if (state.video !== "") {
       const url2 = `https://api.wistia.com/v1/medias/${state.video}/captions.json`;
       const subtitles = await fetch(url2, options).then((data) => data.json());
-      console.log(subtitles);
+      dispatch({ type: "FETCH_SUBTITLE", payload: subtitles[0].text });
+      // }
     };
     fetchdata();
   }, []);
@@ -60,43 +53,29 @@ function App() {
     );
     dispatch({ type: "CHANGE_VIDEO", payload: videoIDNAME[0].hashed_id });
   };
-  const fetchVideoData = (data) => {
-    setVideoData(data);
-    setVideo(data[0].hashed_id);
-    // fetchSubtitleData(data[0].hashed_id);
-  };
-  const fetchSubtitleData = (videId) => {
-    // fetch(url2, options)
-    //   .then((data) => data.json())
-    //   .then((data) =>
-    //     setInteractiveButtons((prevState) => ({
-    //       ...prevState,
-    //       Text: data.text,
-    //     }))
-    //   );
-    console.log(InteractiveButtons.Text);
-    // .toString().replace(/^\d+\n([\d:,]+ --> [\d:,]+\n)/gm, '[]')
-  };
+
   const setBtnState = (e) => {
     if (e.target.className === "btn") {
       e.target.className = "btn on";
-      setInteractiveButtons((prevState) => ({
-        ...prevState,
-        [e.target.value]: true,
-      }));
+      dispatch({ type: "CHANGE_SUBTITLE_STATE", payload: true });
     } else {
-      setInteractiveButtons((prevState) => ({
-        ...prevState,
-        [e.target.value]: false,
-        // Text: "",
-      }));
+      dispatch({ type: "CHANGE_SUBTITLE_STATE", payload: false });
       e.target.className = "btn";
     }
+  };
+  const data = {
+    preload: true,
+    muted: true,
+    playsinline: true,
+    autoPlay: true,
+    silentAutoPlay: true,
+    endVideoBehavior: "loop",
   };
   const renderVideo = () => {
     return (
       <div>
         <h2 className="VideoName">{state.videoName}</h2>
+        
         <button
           value={"Subtitles"}
           onClick={(e) => setBtnState(e)}
@@ -104,7 +83,7 @@ function App() {
         >
           Subtitles
         </button>
-        <h1>{InteractiveButtons.Subtitles.toString()}</h1>
+        <h1>{state.subtitleState.toString()}</h1>
         <div
           className="wistia_responsive_padding"
           style={{ padding: "56.25% 0 0 0", position: "relative" }}
@@ -119,7 +98,7 @@ function App() {
               width: "100%",
             }}
           >
-            <iframe
+            {/* <iframe
               src={`https://fast.wistia.com/embed/medias/${state.video}`}
               title="1"
               allowtransparency="true"
@@ -135,10 +114,10 @@ function App() {
               width={"100%"}
               height={"100%"}
               alt=""
-            ></iframe>
+            ></iframe> */}
+            <WistiaEmbed id={state.video} play={true} options={data} />;
           </div>
         </div>
-        <br></br>
         <select
           name="UPVideos"
           id="UPVIDEOS"
@@ -187,8 +166,8 @@ function App() {
               );
             })
           : ""} */}
-        {InteractiveButtons.Subtitles === true &&
-          InteractiveButtons.Text.split("-->").map((data) => {
+        {state.subtitleState === true &&
+          state.subtitle.split("-->").map((data) => {
             return (
               <div>
                 <textarea className="TextAreaSubtitles">{data}</textarea>
