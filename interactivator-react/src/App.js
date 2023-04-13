@@ -6,6 +6,9 @@ import Lottie from "react-lottie";
 import animationData from "./assets/99109-loading (1).json";
 import { useDispatch, useSelector } from "react-redux";
 import WistiaEmbed from "./WistiaEmbed";
+import IframeData from "./IframeData";
+import iframeData from "./IframeData";
+import InteractivativeButtons from "./components/InteractiveButtons";
 // import { Wistia } from 'wistia/player';
 const url = "https://api.wistia.com/v1/medias.json?type=Video";
 
@@ -51,7 +54,10 @@ function App() {
     const videoIDNAME = state.videoData.filter(
       (data) => data.name === videoID && data.hashed_id
     );
-    dispatch({ type: "CHANGE_VIDEO", payload: videoIDNAME[0].hashed_id });
+    dispatch({
+      type: "CHANGE_VIDEO",
+      payload: { videoID: videoIDNAME[0].hashed_id, name: videoIDNAME[0].name },
+    });
   };
 
   const setBtnState = (e) => {
@@ -72,10 +78,11 @@ function App() {
     endVideoBehavior: "loop",
   };
   const renderVideo = () => {
+    console.log(state.videoName);
     return (
       <div>
         <h2 className="VideoName">{state.videoName}</h2>
-        
+
         <button
           value={"Subtitles"}
           onClick={(e) => setBtnState(e)}
@@ -83,7 +90,7 @@ function App() {
         >
           Subtitles
         </button>
-        <h1>{state.subtitleState.toString()}</h1>
+        {/* <h1>{state.subtitleState.toString()}</h1> */}
         <div
           className="wistia_responsive_padding"
           style={{ padding: "56.25% 0 0 0", position: "relative" }}
@@ -115,7 +122,7 @@ function App() {
               height={"100%"}
               alt=""
             ></iframe> */}
-            <WistiaEmbed id={state.video} play={true} options={data} />;
+            <WistiaEmbed id={state.video} play={true} options={data} />
           </div>
         </div>
         <select
@@ -141,6 +148,7 @@ function App() {
       {state.videoData.length > 0 ? (
         <div className="videoDiv">
           {renderVideo()}
+          <InteractivativeButtons setBtnState={setBtnState} />
           <details>
             <summary>Embed Code</summary>
             <div id="textDisplayCode">Hello</div>
@@ -176,6 +184,8 @@ function App() {
             );
           })}
       </div>
+      {/* <IframeData videoId={state.video} /> */}
+      {iframeData(state.video)}
     </div>
   );
 }

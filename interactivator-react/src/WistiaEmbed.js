@@ -9,7 +9,7 @@ import Helmet from "react-helmet";
 function WistiaEmbed({ id, play, options }) {
   // const el = useRef()
   const [video, setVideo] = useState();
-  console.log(id, play);
+  const [time, setTime] = useState(0);
   useEffect(() => {
     if (!video) return;
     if (play) {
@@ -82,8 +82,14 @@ function WistiaEmbed({ id, play, options }) {
     if (!video) return;
     console.log(video.time());
     video.bind("play", onPlayEvent);
+    setTime(video.time());
+    console.log(video.time());
     video.bind("beforeremove", function () {
       return video.unbind;
+    });
+    video.bind("timechange", function () {
+      console.log(video.time());
+      setTime(video.time());
     });
     video.bind("timechange", function (t) {
       if (t > 5) {
@@ -180,7 +186,7 @@ function WistiaEmbed({ id, play, options }) {
           backgroundColor: "gray",
         }}
       >
-        <p style={{ color: "white" }}>{video && video.time()}</p>
+        <p style={{ color: "white" }}>{time}</p>
         <input
           onChange={(e) => videSeek(e.target.value)}
           type="range"

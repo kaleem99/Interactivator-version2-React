@@ -53,6 +53,8 @@
 #UPVIDEOS {
   width: 100%;
   margin-top: 80px;
+  height: 30px;
+  padding: 5px;
 }
 summary {
   margin-top: 20px;
