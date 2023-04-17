@@ -39,18 +39,18 @@ function App() {
   useEffect(() => {
     const fetchdata = async () => {
       const result = await fetch(url, options).then((data) => data.json());
-      // .then((data) => data.filter((v, i) => console.log(v.type)));
 
       dispatch({ type: "FETCH_VIDEO", payload: result });
-      // if (state.video !== "") {
-      const url2 = `https://api.wistia.com/v1/medias/${state.video}/captions.json`;
+      console.log(result[0].hashed_id);
+      const url2 = `https://api.wistia.com/v1/medias/${result[0].hashed_id}/captions.json`;
       const subtitles = await fetch(url2, options).then((data) => data.json());
+      console.log(subtitles);
       dispatch({ type: "FETCH_SUBTITLE", payload: subtitles[0].text });
-      // }
     };
     fetchdata();
   }, []);
-  const changeVideo = (videoID) => {
+
+  const changeVideo = async (videoID) => {
     const videoIDNAME = state.videoData.filter(
       (data) => data.name === videoID && data.hashed_id
     );
@@ -58,6 +58,11 @@ function App() {
       type: "CHANGE_VIDEO",
       payload: { videoID: videoIDNAME[0].hashed_id, name: videoIDNAME[0].name },
     });
+    const url2 = `https://api.wistia.com/v1/medias/${videoIDNAME[0].hashed_id}/captions.json`;
+
+    const subtitles = await fetch(url2, options).then((data) => data.json());
+    console.log(subtitles);
+    dispatch({ type: "FETCH_SUBTITLE", payload: subtitles[0].text });
   };
 
   const setBtnState = (e) => {
@@ -78,7 +83,7 @@ function App() {
     endVideoBehavior: "loop",
   };
   const renderVideo = () => {
-    console.log(state.videoName);
+    // console.log(state.videoName);
     return (
       <div>
         <h2 className="VideoName">{state.videoName}</h2>
@@ -125,6 +130,7 @@ function App() {
             <WistiaEmbed id={state.video} play={true} options={data} />
           </div>
         </div>
+
         <select
           name="UPVideos"
           id="UPVIDEOS"

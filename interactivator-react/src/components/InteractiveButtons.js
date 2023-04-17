@@ -31,10 +31,10 @@ function InteractivativeButtons({ setBtnState }) {
         </button>
       ) : (
         <span className="newButtons" onMouseLeave={(e) => setAdd(false)}>
-          <button type="button" onclick="newSub()">
+          <button type="button" onClick="newSub()">
             Subtitle
           </button>
-          <button type="button" onclick="newChap()">
+          <button type="button" onClick="newChap()">
             Chapter
           </button>
           <select id="interactiveSelect" onchange="newIFunction(this)">

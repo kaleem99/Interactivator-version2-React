@@ -19,7 +19,6 @@ const options = {
 export const fetchVideoReducer = (state = initialState, action) => {
   switch (action.type) {
     case "FETCH_VIDEO":
-      console.log(action.payload);
       return {
         ...state,
         videoData: action.payload,
@@ -27,7 +26,6 @@ export const fetchVideoReducer = (state = initialState, action) => {
         videoName: action.payload[0].name,
       };
     case "CHANGE_VIDEO":
-      console.log(action.payload.name);
       return {
         ...state,
         video: action.payload.videoID,
