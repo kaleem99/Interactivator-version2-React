@@ -10,7 +10,6 @@ import IframeData from "./IframeData";
 import iframeData from "./IframeData";
 import InteractivativeButtons from "./components/InteractiveButtons";
 // import { Wistia } from 'wistia/player';
-const url = "https://api.wistia.com/v1/medias.json?type=Video";
 
 const options = {
   headers: {
@@ -38,10 +37,12 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     const fetchdata = async () => {
+      const url = `https://api.wistia.com/v1/medias.json?type=Video`;
       const result = await fetch(url, options).then((data) => data.json());
 
       dispatch({ type: "FETCH_VIDEO", payload: result });
       console.log(result[0].hashed_id);
+      console.log(result.length);
       const url2 = `https://api.wistia.com/v1/medias/${result[0].hashed_id}/captions.json`;
       const subtitles = await fetch(url2, options).then((data) => data.json());
       console.log(subtitles);
@@ -130,17 +131,6 @@ function App() {
             <WistiaEmbed id={state.video} play={true} options={data} />
           </div>
         </div>
-
-        <select
-          name="UPVideos"
-          id="UPVIDEOS"
-          onChange={(e) => changeVideo(e.target.value)}
-        >
-          {state.videoData.map((data) => (
-            <option value={data.name}>{data.name}</option>
-          ))}
-        </select>
-        <br></br>
       </div>
     );
   };
@@ -154,7 +144,7 @@ function App() {
       {state.videoData.length > 0 ? (
         <div className="videoDiv">
           {renderVideo()}
-          <InteractivativeButtons setBtnState={setBtnState} />
+          <InteractivativeButtons state={state} changeVideo={changeVideo} setBtnState={setBtnState} />
           <details>
             <summary>Embed Code</summary>
             <div id="textDisplayCode">Hello</div>

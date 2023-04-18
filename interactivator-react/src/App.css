@@ -12,7 +12,9 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
+.iframe-wrapper {
+  height: 100%;
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -36,11 +38,16 @@
     transform: rotate(360deg);
   }
 }
-
+details {
+  width: 90%;
+  margin: auto;
+}
 .videoDiv {
   width: 80%;
   height: auto;
-  margin: 10px auto;
+  margin-top: 10px;
+  margin-left: 40px;
+  margin-right: auto;
 }
 .Interactivator {
   width: 100%;
@@ -52,8 +59,8 @@
 
 #UPVIDEOS {
   width: 100%;
-  margin-top: 80px;
-  height: 30px;
+  margin-top: 10px;
+  height: 40px;
   padding: 5px;
 }
 summary {
@@ -107,4 +114,17 @@ h1 {
   height: 15px;
   margin-top: auto;
   margin-bottom: auto;
+}
+
+.SelectAndNext {
+  display: grid;
+  width: 90%;
+  margin: auto;
+  grid-template-columns: 65% 15% 20%;
+  padding: 10px;
+}
+
+#NextPage {
+  margin-top: auto;
+  margin-bottom: 0px;
 }

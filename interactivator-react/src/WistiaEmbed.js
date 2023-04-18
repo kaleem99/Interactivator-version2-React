@@ -21,50 +21,6 @@ function WistiaEmbed({ id, play, options }) {
   }, [play, video]);
 
   useEffect(() => {
-    // window._wq = window._wq || [];
-
-    // // RUN WEBSITE IN PRICAVY MODE
-    // window._wq.push(function (W) {
-    //   W.consent(false);
-    // });
-
-    // window._wq.push({
-    //   id,
-    //   options: {
-    //     // PLAYBACK
-    //     preload: true,
-    //     muted: true,
-    //     playsinline: true,
-    //     autoPlay: play,
-    //     silentAutoPlay: true,
-    //     endVideoBehavior: "loop",
-
-    //     // LAYOUT
-    //     fitStrategy: "cover",
-    //     videoFoam: false,
-
-    //     // TRACKING
-    //     copyLinkAndThumbnailEnabled: false,
-    //     doNotTrack: true,
-    //     googleAnalytics: false,
-    //     seo: false,
-    //     controlsVisibleOnLoad: false,
-    //     fullscreenOnRotateToLandscape: false,
-    //     fullscreenButton: false,
-    //     settingsControl: false,
-    //     qualityControl: false,
-    //     playButton: false,
-    //     playbar: false,
-    //     playbackRateControl: false,
-    //     smallPlayButton: false,
-
-    //     ...options,
-    //   },
-    //   onReady: myOnReady,
-    //   onHasData: () => {
-    //     console.log("onHasData");
-    //   },
-    // });
     window._wq = window._wq || [];
     window._wq.push({
       id: id,
@@ -131,7 +87,7 @@ function WistiaEmbed({ id, play, options }) {
   return (
     <>
       <div className="iframe-wrapper">
-        {/* <Helmet>
+        <Helmet>
           <script
             src="https://fast.wistia.com/assets/external/E-v1.js"
             async
@@ -140,7 +96,7 @@ function WistiaEmbed({ id, play, options }) {
             src={`https://fast.wistia.com/embed/medias/${id}.json`}
             async
           ></script>
-        </Helmet> */}
+        </Helmet>
         <iframe
           src={`https://fast.wistia.net/embed/iframe/${id}?backTenSecondsControl=true`}
           title="Video"
@@ -152,8 +108,8 @@ function WistiaEmbed({ id, play, options }) {
           name="wistia_embed"
           allowFullScreen
           // msallowfullscreen="true"
-          width="640"
-          height="360"
+          width="90%"
+          height="100%"
         ></iframe>
       </div>
     </>

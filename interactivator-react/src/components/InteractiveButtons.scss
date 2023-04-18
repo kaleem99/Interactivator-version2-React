@@ -1,10 +1,15 @@
 .InteractiveButtons {
-  width: 100%;
+  width: 90%;
   height: 50px;
   padding: 10px;
   display: grid;
   margin-top: 10px;
   grid-template-columns: 80% 20%;
+  margin: auto;
+}
+.ButtonsInteractive{
+  display: grid;
+  grid-template-rows: auto auto;
 }
 .primary {
   padding: 10px 16px;
@@ -52,8 +57,8 @@ select {
   text-decoration: none;
   transition: all 0.2s ease;
 }
-.newButtons{
-    display: grid;
-    grid-template-columns: auto;
-    width: 120px;
+.newButtons {
+  display: grid;
+  grid-template-columns: auto;
+  width: 120px;
 }
