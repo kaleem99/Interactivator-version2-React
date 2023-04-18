@@ -1,8 +1,20 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import "./InteractiveButtons.scss";
 
-function InteractivativeButtons({ state, changeVideo, setBtnState }) {
+function InteractivativeButtons({
+  state,
+  changeVideo,
+  setBtnState,
+  fetchPageData,
+}) {
   const [add, setAdd] = useState(false);
+  const dispatch = useDispatch();
+  const changeWistiaDataPage = (type) => {
+    dispatch({ type: type });
+    fetchPageData();
+  };
   return (
     <div className="ButtonsInteractive">
       <div className="SelectAndNext">
@@ -15,8 +27,22 @@ function InteractivativeButtons({ state, changeVideo, setBtnState }) {
             <option value={data.name}>{data.name}</option>
           ))}
         </select>
-        <div></div>
-        <button id="NextPage">Next Page</button>
+      </div>
+      <div className="NextAndBack">
+        <button
+          id="NextPage"
+          onClick={() =>
+            state.Page > 1 && changeWistiaDataPage("CHANGE_PREVIOUS_PAGE_DATA")
+          }
+        >
+          Previous Page
+        </button>
+        <button
+          id="NextPage"
+          onClick={() => changeWistiaDataPage("CHANGE_NEXT_PAGE_DATA")}
+        >
+          Next Page
+        </button>
       </div>
       <div className="InteractiveButtons">
         <div className="saveAndReload">

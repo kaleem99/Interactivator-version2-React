@@ -4,10 +4,15 @@
   padding: 10px;
   display: grid;
   margin-top: 10px;
-  grid-template-columns: 80% 20%;
+  grid-template-columns: auto 30%;
   margin: auto;
+  .AddInteractive {
+    float: right;
+    margin-left: auto;
+    width: 120px;
+  }
 }
-.ButtonsInteractive{
+.ButtonsInteractive {
   display: grid;
   grid-template-rows: auto auto;
 }
@@ -21,10 +26,7 @@
   text-decoration: none;
   cursor: pointer;
 }
-.AddInteractive {
-  float: right;
-  width: 120px;
-}
+
 .saveAndReload {
   display: grid;
   grid-template-columns: 120px 120px;
@@ -61,4 +63,16 @@ select {
   display: grid;
   grid-template-columns: auto;
   width: 120px;
+  margin-left: auto;
+  padding: 5px;
+}
+.NextAndBack {
+  width: 90%;
+  margin: auto;
+  button:nth-child(1) {
+    float: left;
+  }
+  button:nth-child(2) {
+    float: right;
+  }
 }

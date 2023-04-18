@@ -6,7 +6,7 @@ const initialState = {
   videoName: "",
   subtitle: "",
   subtitleState: false,
-  Page: "page=2",
+  Page: 1,
 };
 const url = "https://api.wistia.com/v1/medias.json";
 const options = {
@@ -43,11 +43,20 @@ export const fetchVideoReducer = (state = initialState, action) => {
         ...state,
         subtitleState: action.payload,
       };
-    case "CHANGE_PAGE_DATA":
+    case "CHANGE_NEXT_PAGE_DATA":
+      state.Page += 1;
+      console.log(state.Page);
       return {
         ...state,
-        Page: action.payload,
+        Page: state.Page,
       };
+      case "CHANGE_PREVIOUS_PAGE_DATA":
+        state.Page -= 1;
+        console.log(state.Page);
+        return {
+          ...state,
+          Page: state.Page,
+        };
     default:
       return state;
   }

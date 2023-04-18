@@ -117,10 +117,10 @@ h1 {
 }
 
 .SelectAndNext {
-  display: grid;
+  /* display: grid; */
   width: 90%;
   margin: auto;
-  grid-template-columns: 65% 15% 20%;
+  /* grid-template-columns: 65% 15% 20%; */
   padding: 10px;
 }
 

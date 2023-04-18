@@ -36,21 +36,17 @@ function App() {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
   useEffect(() => {
-    const fetchdata = async () => {
-      const url = `https://api.wistia.com/v1/medias.json?type=Video`;
-      const result = await fetch(url, options).then((data) => data.json());
-
-      dispatch({ type: "FETCH_VIDEO", payload: result });
-      console.log(result[0].hashed_id);
-      console.log(result.length);
-      const url2 = `https://api.wistia.com/v1/medias/${result[0].hashed_id}/captions.json`;
-      const subtitles = await fetch(url2, options).then((data) => data.json());
-      console.log(subtitles);
-      dispatch({ type: "FETCH_SUBTITLE", payload: subtitles[0].text });
-    };
-    fetchdata();
+    fetchPageData();
   }, []);
+  const fetchPageData = async () => {
+    const url = `https://api.wistia.com/v1/medias.json?page=${state.Page}`;
+    const result = await fetch(url, options).then((data) => data.json());
 
+    dispatch({ type: "FETCH_VIDEO", payload: result });
+    const url2 = `https://api.wistia.com/v1/medias/${result[0].hashed_id}/captions.json`;
+    const subtitles = await fetch(url2, options).then((data) => data.json());
+    dispatch({ type: "FETCH_SUBTITLE", payload: subtitles[0].text });
+  };
   const changeVideo = async (videoID) => {
     const videoIDNAME = state.videoData.filter(
       (data) => data.name === videoID && data.hashed_id
@@ -62,7 +58,6 @@ function App() {
     const url2 = `https://api.wistia.com/v1/medias/${videoIDNAME[0].hashed_id}/captions.json`;
 
     const subtitles = await fetch(url2, options).then((data) => data.json());
-    console.log(subtitles);
     dispatch({ type: "FETCH_SUBTITLE", payload: subtitles[0].text });
   };
 
@@ -144,7 +139,12 @@ function App() {
       {state.videoData.length > 0 ? (
         <div className="videoDiv">
           {renderVideo()}
-          <InteractivativeButtons state={state} changeVideo={changeVideo} setBtnState={setBtnState} />
+          <InteractivativeButtons
+            state={state}
+            changeVideo={changeVideo}
+            setBtnState={setBtnState}
+            fetchPageData={fetchPageData}
+          />
           <details>
             <summary>Embed Code</summary>
             <div id="textDisplayCode">Hello</div>
