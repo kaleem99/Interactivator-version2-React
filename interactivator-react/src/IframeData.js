@@ -1,6 +1,8 @@
 import logsFile from "./videoLogs.json";
 const iframeData = (videoId) => {
-  // console.log(logsFile[videoId]);
-  // return <h1>He;;llo</h1>;
+  if(logsFile[videoId] === undefined){
+    return ""
+  }
+  return logsFile[videoId];
 };
 export default iframeData;

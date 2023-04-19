@@ -1,7 +1,9 @@
 .App {
   text-align: center;
 }
-
+body {
+  background-color: #282c34;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -50,11 +52,8 @@ details {
   margin-right: auto;
 }
 .Interactivator {
-  width: 100%;
-  height: auto;
   display: grid;
   grid-template-columns: 50% 50%;
-  background-color: #282c34;
 }
 
 #UPVIDEOS {
@@ -95,7 +94,7 @@ h1 {
 .Interactives {
   height: 80vh;
   overflow-x: auto;
-  margin-top: auto;
+  margin-top: 10%;
   margin-bottom: auto;
 }
 
@@ -106,8 +105,15 @@ h1 {
   width: 440px;
   height: 100px;
   font-size: large;
-  background-color: #0a0a23;
-  color: white;
+  background-color: #282c34;
+  border: none;
+  color: #dddddd;
+  /* margin: 40px auto; */
+  font-family: Open Sans Light, Helvetica, sans-serif;
+  font-size: x-large;
+  width: 95%;
+  min-width: 500px;
+  height: 4em;
 }
 #points {
   width: 70%;
@@ -126,5 +132,48 @@ h1 {
 
 #NextPage {
   margin-top: auto;
-  margin-bottom: 0px;
+  margin-bottom: auto;
+}
+#textDisplayCode {
+  width: 100%;
+  word-break: break-all;
+  color: white;
+  height: 200px;
+  overflow-x: scroll;
+}
+.videoInput {
+  width: 200px;
+  border-radius: 5px;
+  height: 25px;
+  border: 1px solid;
+  background-color: white;
+  color: black;
+}
+.container {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  width: 80%;
+  margin: 30px auto;
+}
+.small,
+.subIn,
+.subOut {
+  min-width: 40px;
+  padding: 0px 0px;
+  margin-right: 6px;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.controls1, .controls2, .controls3, .controls4  {
+  display: grid;
+  grid-template-columns: auto;
+  visibility: hidden;
+}
+.in{
+  display: block;
+}
+.out{
+  display: none;
+
 }

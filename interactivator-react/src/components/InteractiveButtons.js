@@ -37,6 +37,7 @@ function InteractivativeButtons({
         >
           Previous Page
         </button>
+        <h2>Page {state.Page} </h2>
         <button
           id="NextPage"
           onClick={() => changeWistiaDataPage("CHANGE_NEXT_PAGE_DATA")}

@@ -12,6 +12,7 @@ function WistiaEmbed({ id, play, options }) {
   const [time, setTime] = useState(0);
   useEffect(() => {
     if (!video) return;
+    setVideo(video);
     if (play) {
       console.log("play video");
       video.play();
@@ -39,8 +40,25 @@ function WistiaEmbed({ id, play, options }) {
   }, []);
 
   const onPlayEvent = () => {
-    console.log("The video was just played!", id);
-    console.log(video.duration());
+    window._wq = window._wq || [];
+    window._wq.push({
+      id: id,
+      onFind: function (video) {
+        video.addPlugin("myPluginName", {
+          src: "https://wiggly-tree-nectarine.glitch.me/my-plugin.js",
+        });
+      },
+      onHasData: () => {
+        console.log("onHasData");
+      },
+      onReady: myOnReady,
+      // onchange: myOnReady,
+      // onplay: myOnReady
+      onclick: function (video) {
+        console.log("The video was just played!", id);
+        console.log(video.duration());
+      },
+    });
   };
 
   useEffect(() => {
@@ -111,6 +129,7 @@ function WistiaEmbed({ id, play, options }) {
           width="90%"
           height="100%"
         ></iframe>
+        {/* <button onClick={onPlayEvent}>Stop</button> */}
       </div>
     </>
   );

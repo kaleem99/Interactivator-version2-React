@@ -69,10 +69,15 @@ select {
 .NextAndBack {
   width: 90%;
   margin: auto;
+  display: grid;
+  grid-template-columns: 130px auto 130px;
   button:nth-child(1) {
     float: left;
   }
   button:nth-child(2) {
     float: right;
+  }
+  h2 {
+    color: white;
   }
 }

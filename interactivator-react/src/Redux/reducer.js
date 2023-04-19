@@ -7,6 +7,8 @@ const initialState = {
   subtitle: "",
   subtitleState: false,
   Page: 1,
+  courseCode: "",
+  videoIDInput: "",
 };
 const url = "https://api.wistia.com/v1/medias.json";
 const options = {
@@ -18,13 +20,16 @@ const options = {
 };
 
 export const fetchVideoReducer = (state = initialState, action) => {
+  let courseCode = "";
   switch (action.type) {
     case "FETCH_VIDEO":
+      courseCode = action.payload[0].project.name.trim("").replace(/\s/gi, "-");
       return {
         ...state,
         videoData: action.payload,
         video: action.payload[0].hashed_id,
         videoName: action.payload[0].name,
+        courseCode: courseCode,
       };
     case "CHANGE_VIDEO":
       return {
@@ -50,13 +55,26 @@ export const fetchVideoReducer = (state = initialState, action) => {
         ...state,
         Page: state.Page,
       };
-      case "CHANGE_PREVIOUS_PAGE_DATA":
-        state.Page -= 1;
-        console.log(state.Page);
-        return {
-          ...state,
-          Page: state.Page,
-        };
+    case "CHANGE_PREVIOUS_PAGE_DATA":
+      state.Page -= 1;
+      console.log(state.Page);
+      return {
+        ...state,
+        Page: state.Page,
+      };
+    case "CUSTOM_VIDEO_INPUT":
+      return {
+        ...state,
+        videoIDInput: action.payload,
+      };
+    case "FETCH_CUSTOM_VIDEO_INPUT":
+      courseCode = action.payload.project.name.trim("").replace(/\s/gi, "-");
+      console.log(courseCode);
+      console.log(action.payload);
+      return {
+        ...state,
+        courseCode: courseCode,
+      };
     default:
       return state;
   }
