@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/Interactivator-version2-React/static/css/main.225f6465.css",
-    "main.js": "/Interactivator-version2-React/static/js/main.9e295cdd.js",
+    "main.js": "/Interactivator-version2-React/static/js/main.f41bc039.js",
     "static/js/787.2a9814e5.chunk.js": "/Interactivator-version2-React/static/js/787.2a9814e5.chunk.js",
     "static/media/logo.svg": "/Interactivator-version2-React/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/Interactivator-version2-React/index.html",
     "main.225f6465.css.map": "/Interactivator-version2-React/static/css/main.225f6465.css.map",
-    "main.9e295cdd.js.map": "/Interactivator-version2-React/static/js/main.9e295cdd.js.map",
+    "main.f41bc039.js.map": "/Interactivator-version2-React/static/js/main.f41bc039.js.map",
     "787.2a9814e5.chunk.js.map": "/Interactivator-version2-React/static/js/787.2a9814e5.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.225f6465.css",
-    "static/js/main.9e295cdd.js"
+    "static/js/main.f41bc039.js"
   ]
 }
