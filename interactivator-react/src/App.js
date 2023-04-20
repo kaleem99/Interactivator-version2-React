@@ -210,6 +210,13 @@ function App() {
     seconds = seconds / 60;
     testing(seconds);
   };
+  const formattingSubtitles = (data) => {
+    let dataArr = data.split("\n");
+    const d1 = dataArr.shift();
+    const d2 = dataArr.pop();
+    const d3 = dataArr.pop();
+    return dataArr.join(" ");
+  };
   return (
     <div style={styles} className="Interactivator">
       {state.videoData.length > 0 ? (
@@ -287,7 +294,7 @@ function App() {
                   id="42.8/47.009"
                   name="42.8/47.009"
                 >
-                  {data}
+                  {formattingSubtitles(data)}
                 </textarea>
                 <div class="controls2">
                   <button
