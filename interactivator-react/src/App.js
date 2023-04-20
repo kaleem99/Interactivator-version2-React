@@ -10,7 +10,7 @@ import iframeData from "./IframeData";
 import InteractivativeButtons from "./components/InteractiveButtons";
 import updateIframe from "./components/updateIframe";
 // import { Wistia } from 'wistia/player';
-
+import fetchJsonData from "./components/fetchJsonData";
 const options = {
   headers: {
     Authorization:
@@ -32,6 +32,7 @@ const defaultOptions = {
     preserveAspectRatio: "xMidYMid slice",
   },
 };
+
 function App() {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -42,7 +43,8 @@ function App() {
   const fetchPageData = async () => {
     const url = `https://api.wistia.com/v1/medias.json?page=${state.Page}`;
     const result = await fetch(url, options).then((data) => data.json());
-
+    const jsonDataIntrAndOutro = await fetchJsonData();
+    result.jsonData = jsonDataIntrAndOutro;
     dispatch({ type: "FETCH_VIDEO", payload: result });
     const url2 = `https://api.wistia.com/v1/medias/${result[0].hashed_id}/captions.json`;
     const subtitles = await fetch(url2, options).then((data) => data.json());
@@ -82,7 +84,14 @@ function App() {
   const updateIframeData = () => {
     setTimeout(() => {
       const functionList = iframeData(state.video);
-      const result = updateIframe(functionList, state.courseCode, state.video);
+      console.log(functionList);
+      const result = updateIframe(
+        functionList,
+        state.courseCode,
+        state.video,
+        state.jsonDataIntrAndOutro
+      );
+      console.log(result.length);
       document.getElementById("textDisplayCode").innerHTML = result;
     }, 2000);
   };
@@ -106,8 +115,10 @@ function App() {
       // onplay: myOnReady
     });
   };
+
   const renderVideo = () => {
     // console.log(state.videoName);
+
     return (
       <div>
         <h2 className="VideoName">{state.videoName}</h2>
