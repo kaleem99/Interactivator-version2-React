@@ -8,6 +8,8 @@ function InteractivativeButtons({
   changeVideo,
   setBtnState,
   fetchPageData,
+  newIFunction,
+  updateData
 }) {
   const [add, setAdd] = useState(false);
   const dispatch = useDispatch();
@@ -15,6 +17,7 @@ function InteractivativeButtons({
     dispatch({ type: type });
     fetchPageData();
   };
+
   return (
     <div className="ButtonsInteractive">
       <div className="SelectAndNext">
@@ -48,7 +51,7 @@ function InteractivativeButtons({
       <div className="InteractiveButtons">
         <div className="saveAndReload">
           <button
-            value={"Subtitles"}
+            value={"Save"}
             onClick={(e) => setBtnState(e)}
             className="btn primary"
           >
@@ -78,7 +81,7 @@ function InteractivativeButtons({
             <button type="button" onClick="newChap()">
               Chapter
             </button>
-            <select id="interactiveSelect" onChange="newIFunction(this)">
+            <select id="interactiveSelect" onChange={(e) => newIFunction(e)}>
               <option id="defaultOption" selected disabled>
                 Interactivity
               </option>
