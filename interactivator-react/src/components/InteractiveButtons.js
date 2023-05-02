@@ -9,7 +9,7 @@ function InteractivativeButtons({
   setBtnState,
   fetchPageData,
   newIFunction,
-  updateData
+  updateData,
 }) {
   const [add, setAdd] = useState(false);
   const dispatch = useDispatch();
@@ -17,7 +17,6 @@ function InteractivativeButtons({
     dispatch({ type: type });
     fetchPageData();
   };
-
   return (
     <div className="ButtonsInteractive">
       <div className="SelectAndNext">

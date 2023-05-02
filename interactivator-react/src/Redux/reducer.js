@@ -1,7 +1,7 @@
 import { actionsObject } from "./actionTypes";
 
 const initialState = {
-  video: "",
+  video: "pg4ycfs4k7",
   videoData: [],
   videoName: "",
   subtitle: "",
@@ -10,7 +10,9 @@ const initialState = {
   courseCode: "NUS-BCA",
   videoIDInput: "",
   jsonDataIntrAndOutro: "",
-  newSubtitle: ""
+  newSubtitle: "",
+  functionList: "",
+  InteractivityState: false,
 };
 // const url = "https://api.wistia.com/v1/medias.json";
 
@@ -23,7 +25,7 @@ export const fetchVideoReducer = (state = initialState, action) => {
       return {
         ...state,
         videoData: action.payload,
-        video: action.payload[0].hashed_id,
+        video: "pg4ycfs4k7",
         videoName: action.payload[0].name,
         // courseCode: courseCode,
         jsonDataIntrAndOutro: action.payload.jsonData,
@@ -47,7 +49,7 @@ export const fetchVideoReducer = (state = initialState, action) => {
         ).toString();
       }
       let CCs = [];
-      let segments = action.payload.split("-->")
+      let segments = action.payload.split("-->");
       let speakers = [];
       let newLines = [];
       let notes = [];
@@ -88,8 +90,8 @@ export const fetchVideoReducer = (state = initialState, action) => {
           CCs.push(CC);
         }
       }
-      
-      CCs = CCs.concat(chapters);      
+
+      CCs = CCs.concat(chapters);
       return {
         ...state,
         subtitle: CCs,
@@ -127,6 +129,8 @@ export const fetchVideoReducer = (state = initialState, action) => {
         // courseCode: courseCode,
         // jsonDataIntrAndOutro: jsonData,
       };
+    case "CHANGE_INTERACTIVITIES_STATE":
+      return { ...state, InteractivityState: action.payload };
     case "UPDATING_CAPTIONS":
       const newCaptions = action.payload.newCaption;
       // const index = action.payload.index;
@@ -140,15 +144,22 @@ export const fetchVideoReducer = (state = initialState, action) => {
 
       // console.log(action.payload.newCaption)
       // console.log(action.payload.index)
-      console.log(newCaptions)
-      for(let items of state.subtitle){
-        console.log(items.join("\n"))
+      for (let items of state.subtitle) {
+        console.log(items.join("\n"));
       }
       return {
         ...state,
         // newSubtitle: newData
         // courseCode: courseCode,
         // jsonDataIntrAndOutro: jsonData,
+      };
+    case "FUNCTION_LIST":
+      const functionList = action.payload
+        .split(";")
+        .filter((arr) => arr !== "");
+      return {
+        ...state,
+        functionList: functionList,
       };
     default:
       return state;

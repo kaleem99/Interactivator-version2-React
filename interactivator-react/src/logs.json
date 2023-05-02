@@ -16,20 +16,8 @@
     "notes": []
   },
   "pg4ycfs4k7": {
-    "chapterlist": [
-      { "title": "Chapter Title", "time": "1.81197" },
-      { "title": "Strategies for growth", "time": "8.930194" },
-      { "title": "", "time": "15.10084" },
-      { "title": "Financing small businesses", "time": "23.299012" },
-      { "title": "", "time": "24.041187" },
-      { "title": "", "time": "24.492406" },
-      { "title": "Testing Chapter Name", "time": "56.503999" },
-      { "title": "Expansion into rural China", "time": "88.258648" },
-      { "title": "Larger cities.", "time": "88.270401" },
-      { "title": "Internation expansion", "time": "134.662562" },
-      { "title": "Conclusion", "time": "206.024682" }
-    ],
-    "functionList": "logo(\"0\",\"126.806\",\"https://videos.getsmarter.com/Interactive+Video+Content/NUS/NUS+Logo+left.png\");lowerThird(\"5\",\"12\",\"Phil A Woods\",\"left\");Video_Interactivity_Timestamp(\"5.527231\",\"10.527231\",\"8\");Video_Interactivity_Timestamp(\"29.064977\",\"34.064977\",\"0\");heading(\"41.679533\",\"46.679533\",\"Testing Harvard FIH heading\",\"0\",\"left\");Add_Quiz(\"51.410674\",\"56.410674\",\"Which is an exoplanet?\",\"Mars\",\"Kepler-1229\",\"Andromeda\",\"\",\"\",\"\",\"Option 2\");bullet(\"74.495799\",\"79.495799\",\"https://github.com/\");lowerThird(\"114.806\",\"121.806\",\"Phil A Woods\",\"left\");Add_Quiz(\"163.169476\",\"168.169476\",\"What does AI stand for?\",\"Artificial Information\",\"Advanced Intelligence\",\"Artificial Intelligence\",\"Artificial Invention\",\"Automated Intelligence\",\"\",\"Option 3\");Add_Quiz(\"225.675526\",\"230.675526\",\"Testing Quiz\",\"A\",\"B\",\"C\",\"D\",\"\",\"\",\"Option 1\");",
+    "chapterlist": [],
+    "functionList": "heading(\"9.510355\",\"14.510355\",\"Testing 123\",\"0\",\"left\");Add_Quiz(\"79.517766\",\"84.517766\",\"Testing Quiz Functionality\",\"A\",\"B\",\"C\",\"\",\"\",\"\",\"Option 2\");",
     "newLines": [],
     "speakers": [],
     "notes": []
@@ -125,6 +113,13 @@
   "roc17q5zlb": {
     "chapterlist": [],
     "functionList": "logo(\"0\",\"260.04\",\"https://videos.getsmarter.com/Interactive+Video+Content/NUS/NUS+Logo+left.png\");lowerThird(\"5\",\"12\",\"Phil A Woods\",\"left\");Add_Quiz(\"31.409559\",\"36.409559\",\"What does LSE stand for?\",\"London School Of Economics\",\"Las Angeles Stock E\",\"Liberty Student Exchange\",\"Life Simulation Economy\",\"\",\"\",\"Option 1\");lowerThird(\"248.04000000000002\",\"255.04000000000002\",\"Phil A Woods\",\"left\");",
+    "newLines": [],
+    "speakers": [],
+    "notes": []
+  },
+  "b6sswijrhn": {
+    "chapterlist": [],
+    "functionList": "logo(\"0\",\"373.96\",\"https://videos.getsmarter.com/Interactive+Video+Content/NUS/NUS+Logo+left.png\");lowerThird(\"5\",\"12\",\"Phil A Woods\",\"left\");heading(\"20.591274\",\"25.591274\",\"Testing 123\",\"0\",\"left\");lowerThird(\"361.96\",\"368.96\",\"Phil A Woods\",\"left\");",
     "newLines": [],
     "speakers": [],
     "notes": []

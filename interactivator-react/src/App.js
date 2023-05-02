@@ -10,8 +10,10 @@ import iframeData from "./IframeData";
 import InteractivativeButtons from "./components/InteractiveButtons";
 import updateIframe from "./components/updateIframe";
 // import { Wistia } from 'wistia/player';
+import myObject from "./logs.json";
 import updateData from "./components/Helpers";
 import fetchJsonData from "./components/fetchJsonData";
+import RenderFunction from "./components/renderFunctions";
 const options = {
   headers: {
     Authorization:
@@ -47,7 +49,7 @@ function App() {
     const jsonDataIntrAndOutro = await fetchJsonData();
     result.jsonData = jsonDataIntrAndOutro;
     dispatch({ type: "FETCH_VIDEO", payload: result });
-    const url2 = `https://api.wistia.com/v1/medias/${result[0].hashed_id}/captions.json`;
+    const url2 = `https://api.wistia.com/v1/medias/pg4ycfs4k7/captions.json`;
     const subtitles = await fetch(url2, options).then((data) => data.json());
     dispatch({ type: "FETCH_SUBTITLE", payload: subtitles[0].text });
   };
@@ -77,9 +79,9 @@ function App() {
     } else if (e.target.value === "Interactivities") {
       if (e.target.className === "btn") {
         e.target.className = "btn on";
-        // dispatch({ type: "CHANGE_SUBTITLE_STATE", payload: true });
+        dispatch({ type: "CHANGE_INTERACTIVITIES_STATE", payload: true });
       } else {
-        // dispatch({ type: "CHANGE_SUBTITLE_STATE", payload: false });
+        dispatch({ type: "CHANGE_INTERACTIVITIES_STATE", payload: false });
         e.target.className = "btn";
       }
     } else if (e.target.value === "Save") {
@@ -96,8 +98,9 @@ function App() {
   };
   const updateIframeData = () => {
     setTimeout(() => {
-      const functionList = iframeData(state.video);
-      console.log(functionList);
+      const functionList = myObject[state.video];
+      dispatch({ type: "FUNCTION_LIST", payload: functionList.functionList });
+      // const functionList = iframeData(state.video);
       const result = updateIframe(
         functionList,
         state.courseCode,
@@ -108,9 +111,10 @@ function App() {
     }, 2000);
   };
 
+  // Using dot notation:
+
   const renderVideo = () => {
     // console.log(state.videoName);
-
     return (
       <div>
         <h2 className="VideoName">{state.videoName}</h2>
@@ -181,7 +185,6 @@ function App() {
     const subtitles = await fetch(url2, options).then((data) => data.json());
     dispatch({ type: "FETCH_SUBTITLE", payload: subtitles[0].text });
     dispatch({ type: "FETCH_CUSTOM_VIDEO_INPUT", payload: result });
-    console.log(result);
     updateIframeData();
   };
 
@@ -207,7 +210,6 @@ function App() {
           functionName = funcName;
           document.getElementById("interactiveSelect").value = funcName;
         }
-        console.log(funcName);
         if (element.value === "Add_Quiz") {
           // console.log(funcName);
           functionName = "Add_Quiz";
@@ -309,6 +311,42 @@ function App() {
     const d3 = dataArr.pop();
     return dataArr.join(" ");
   };
+
+  // function updateIFunctionsFromList() {
+  //  window._wq = window._wq || [];
+  //   window._wq.push({
+  //       id: '{{Wistia_URL}}',
+  //       onReady: function (video) {
+  //         let functionList = document.getElementById('functionList').innerHTML;
+  //         if (functionList === 'new') {
+  //           functionList = `logo("0","${video.duration()}","${UPLogoData[0][1]}");lowerThird("5","12","${lwrThirdData[0][0]}","left");lowerThird("${(video.duration() - 12)}","${(video.duration() - 5)}","${lwrThirdData[0][0]}","left");`;
+  //           document.getElementById('functionList').innerHTML = functionList;
+  //         }
+  //         const functionListArray = functionList.split(';');
+
+  //         // remove all elements of class function
+  //         const functions = document.getElementsByClassName('function');
+  //         for (let i = 0; i < functions.length; i++) {
+  //           functions[i].parentElement.remove();
+  //         }
+
+  //         // loop through functionListArray and add functions
+  //         for (let i = 0; i < functionListArray.length; i++) {
+  //           if (functionListArray[i] !== '') {
+  //             const funcName = functionListArray[i].split('(')[0];
+  //             const funcArgs = functionListArray[i].split('(')[1].slice(1, -2).split('","');
+  //             document.getElementById('interactiveSelect').value = funcName;
+  //             newIFunction(document.getElementById('interactiveSelect'), funcArgs, funcName);
+  //             console.log(`added function ${funcName}`);
+  //           }
+  //         }
+  //         console.log(functionListArray);
+  //       }
+  //     });
+  //     updateIframe(functionList);
+  //   return null;
+  // }
+
   return (
     <div style={styles} className="Interactivator">
       {state.videoData.length > 0 ? (
@@ -462,6 +500,10 @@ function App() {
                 </div>
               </div>
             );
+          })}
+        {state.functionList.length > 0 &&
+          state.functionList.map((funct) => {
+            return <RenderFunction func={funct} />;
           })}
       </div>
     </div>
