@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/Interactivator-version2-React/static/css/main.225f6465.css",
-    "main.js": "/Interactivator-version2-React/static/js/main.11dcf57a.js",
+    "main.css": "/Interactivator-version2-React/static/css/main.13b6a832.css",
+    "main.js": "/Interactivator-version2-React/static/js/main.a1e16d55.js",
     "static/js/787.2a9814e5.chunk.js": "/Interactivator-version2-React/static/js/787.2a9814e5.chunk.js",
     "static/media/logo.svg": "/Interactivator-version2-React/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/Interactivator-version2-React/index.html",
-    "main.225f6465.css.map": "/Interactivator-version2-React/static/css/main.225f6465.css.map",
-    "main.11dcf57a.js.map": "/Interactivator-version2-React/static/js/main.11dcf57a.js.map",
+    "main.13b6a832.css.map": "/Interactivator-version2-React/static/css/main.13b6a832.css.map",
+    "main.a1e16d55.js.map": "/Interactivator-version2-React/static/js/main.a1e16d55.js.map",
     "787.2a9814e5.chunk.js.map": "/Interactivator-version2-React/static/js/787.2a9814e5.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.225f6465.css",
-    "static/js/main.11dcf57a.js"
+    "static/css/main.13b6a832.css",
+    "static/js/main.a1e16d55.js"
   ]
 }
