@@ -1,7 +1,7 @@
 import { actionsObject } from "./actionTypes";
 
 const initialState = {
-  video: "pg4ycfs4k7",
+  video: "",
   videoData: [],
   videoName: "",
   subtitle: "",
@@ -13,6 +13,7 @@ const initialState = {
   newSubtitle: "",
   functionList: "",
   InteractivityState: false,
+  popup: false,
 };
 // const url = "https://api.wistia.com/v1/medias.json";
 
@@ -25,7 +26,7 @@ export const fetchVideoReducer = (state = initialState, action) => {
       return {
         ...state,
         videoData: action.payload,
-        video: "pg4ycfs4k7",
+        video: action.payload[0].hashed_id,
         videoName: action.payload[0].name,
         // courseCode: courseCode,
         jsonDataIntrAndOutro: action.payload.jsonData,
@@ -36,6 +37,11 @@ export const fetchVideoReducer = (state = initialState, action) => {
         video: action.payload.videoID,
         videoName: action.payload.name,
         // jsonDataIntrAndOutro: jsonData,
+      };
+    case "POPUP":
+      return {
+        ...state,
+        popup: action.payload,
       };
     case "FETCH_SUBTITLE":
       function getSecs(input) {

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+import { searchInputVideoID } from "./Helpers";
 import "./InteractiveButtons.scss";
 
 function InteractivativeButtons({
@@ -20,17 +20,33 @@ function InteractivativeButtons({
   return (
     <div className="ButtonsInteractive">
       <div className="SelectAndNext">
+        <select>
+          <option value={"Interactive type"}>Interactive type</option>
+        </select>
+
+        <input
+          type={"text"}
+          onChange={(e) =>
+            dispatch({ type: "CUSTOM_VIDEO_INPUT", payload: e.target.value })
+          }
+          placeholder={"course ID"}
+          value={state.videoIDInput}
+          className="videoInput"
+        />
+        <button onClick={() => searchInputVideoID(state, dispatch)}>
+          Search
+        </button>
         <select
           name="UPVideos"
           id="UPVIDEOS"
-          onChange={(e) => changeVideo(e.target.value)}
+          onChange={(e) => changeVideo(e.target.value, dispatch, state)}
         >
           {state.videoData.map((data) => (
             <option value={data.name}>{data.name}</option>
           ))}
         </select>
       </div>
-      <div className="NextAndBack">
+      {/* <div className="NextAndBack">
         <button
           id="NextPage"
           onClick={() =>
@@ -46,16 +62,9 @@ function InteractivativeButtons({
         >
           Next Page
         </button>
-      </div>
+      </div> */}
       <div className="InteractiveButtons">
-        <div className="saveAndReload">
-          <button
-            value={"Save"}
-            onClick={(e) => setBtnState(e)}
-            className="btn primary"
-          >
-            Save
-          </button>
+        {/* <div className="saveAndReload">
           <button
             value={"Reload"}
             onClick={(e) => setBtnState(e)}
@@ -63,8 +72,8 @@ function InteractivativeButtons({
           >
             ↻
           </button>
-        </div>
-        {!add ? (
+        </div> */}
+        {/* {!add ? (
           <button
             value={"Add Interactive"}
             onMouseEnter={(e) => setAdd(true)}
@@ -100,7 +109,7 @@ function InteractivativeButtons({
               </option>
             </select>
           </span>
-        )}
+        )} */}
       </div>
     </div>
   );

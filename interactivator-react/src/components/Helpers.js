@@ -1,4 +1,13 @@
 // convert seconds to hours, minutes and seconds
+import fetchJsonData from "./fetchJsonData";
+
+const options = {
+  headers: {
+    Authorization:
+      "Bearer 185e6a59d70559fdf59fe891201cf3f96d0c6e645b9aa4e7e1f0bf645ad2bed9",
+  },
+  method: "get",
+};
 const hhmmss = (input) => {
   // for converting from UI time to srt time
   const date = new Date(parseInt(input.split(".")[0]) * 1000);
@@ -48,5 +57,46 @@ const updateData = async (state) => {
     alert("Error, captions were not updated.");
   }
 };
+const changeVideo = async (videoID, dispatch, state) => {
+  const videoIDNAME = state.videoData.filter(
+    (data) => data.name === videoID && data.hashed_id
+  );
+  dispatch({
+    type: "CHANGE_VIDEO",
+    payload: { videoID: videoIDNAME[0].hashed_id, name: videoIDNAME[0].name },
+  });
+  const url2 = `https://api.wistia.com/v1/medias/${videoIDNAME[0].hashed_id}/captions.json`;
 
-export default updateData;
+  const subtitles = await fetch(url2, options).then((data) => data.json());
+  dispatch({ type: "FETCH_SUBTITLE", payload: subtitles[0].text });
+};
+
+const fetchPageData = async (dispatch, state) => {
+  const url = `https://api.wistia.com/v1/medias.json?page=${state.Page}`;
+  const result = await fetch(url, options).then((data) => data.json());
+  const jsonDataIntrAndOutro = await fetchJsonData();
+  result.jsonData = jsonDataIntrAndOutro;
+  dispatch({ type: "FETCH_VIDEO", payload: result });
+  const url2 = `https://api.wistia.com/v1/medias/${result[0].hashed_id}/captions.json`;
+  const subtitles = await fetch(url2, options).then((data) => data.json());
+  dispatch({ type: "FETCH_SUBTITLE", payload: subtitles[0].text });
+};
+
+const searchInputVideoID = async (state, dispatch) => {
+  const url = `https://api.wistia.com/v1/medias/${state.videoIDInput}.json`;
+  const result = await fetch(url, options).then((data) => data.json());
+  if (result.error) {
+    return alert(result.error);
+  }
+  dispatch({
+    type: "CHANGE_VIDEO",
+    payload: { videoID: result.hashed_id, name: result.name },
+  });
+  const url2 = `https://api.wistia.com/v1/medias/${state.videoIDInput}/captions.json`;
+
+  const subtitles = await fetch(url2, options).then((data) => data.json());
+  dispatch({ type: "FETCH_SUBTITLE", payload: subtitles[0].text });
+  dispatch({ type: "FETCH_CUSTOM_VIDEO_INPUT", payload: result });
+  // updateIframeData();
+};
+export { updateData, changeVideo, fetchPageData, searchInputVideoID };

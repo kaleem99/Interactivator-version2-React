@@ -1,4 +1,4 @@
-function RenderFunction({ func }) {
+function RenderFunction({ func, state }) {
   let newFunct = func.slice(0, func.indexOf("("));
   if (newFunct === "Add_Quiz") {
     return (
@@ -8,6 +8,7 @@ function RenderFunction({ func }) {
         <div className="QuizInput Ifunction_Add_Quiz" id="QuizInput">
           <h2>Please populate input to add quiz</h2>
           <label>Question</label>
+          <h1>{state.InteractivityState.toString()}</h1>
           <br />
           <input
             type="text"

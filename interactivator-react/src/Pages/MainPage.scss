@@ -1,0 +1,207 @@
+.MainPage {
+  width: 100%;
+  height: 100vh;
+  //   background-color: red;
+  display: grid;
+  grid-template-columns: auto;
+}
+.Popup {
+  width: 80%;
+  height: 80vh;
+  background: #ffffff;
+  mix-blend-mode: normal;
+  border: 5px solid #002d58;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  //   overflow-y: scroll;
+}
+.popupMain {
+  width: 90%;
+  height: 85%;
+  margin: 20px auto;
+  overflow-y: scroll;
+  background: #ffffff;
+  border-top: 3px solid #002d58;
+  box-shadow: -4px 4px 4px rgba(0, 45, 88, 0.5);
+  border-radius: 0px 5px 5px 5px;
+}
+.popupMain::-webkit-scrollbar {
+  width: 13px; /* set the width of the scrollbar */
+  padding: 2px;
+}
+
+.popupMain::-webkit-scrollbar-thumb {
+  background-color: white; /* set the color of the scrollbar thumb */
+  border-radius: 10px; /* round the corners of the thumb */
+  padding: 10px;
+  border: 2px solid #002d58;
+}
+
+.popupMain::-webkit-scrollbar-track {
+  background-color: #002d58; /* set the color of the scrollbar track */
+}
+.Header,
+.Body,
+.Footer {
+  margin: auto;
+  width: 94%;
+}
+.Header {
+  height: 100px;
+  //   background-color: blue;
+}
+.Body {
+  height: 500px;
+  //   background-color: green;
+  border: 1px solid #002d58;
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+.Footer {
+  height: 110px;
+  border-width: 3px 0.75px 0px 0.75px;
+  border-style: solid;
+  overflow-x: scroll;
+  border-color: #002d58;
+//   filter: drop-shadow(4px 0px 4px rgba(0, 45, 88, 0.5))
+//     drop-shadow(-4px 0px 4px rgba(0, 45, 88, 0.5));
+  border-radius: 6px;
+}
+.Footer::-webkit-scrollbar {
+  width: 13px; /* set the width of the scrollbar */
+  padding: 2px;
+}
+
+.Footer::-webkit-scrollbar-thumb {
+  background-color: white; /* set the color of the scrollbar thumb */
+  border-radius: 10px; /* round the corners of the thumb */
+  padding: 10px;
+  border: 2px solid #002d58;
+}
+
+.Footer::-webkit-scrollbar-track {
+  background-color: #002d58; /* set the color of the scrollbar track */
+}
+.HeaderLeft {
+  width: 60%;
+  height: 80px;
+  background-color: white;
+  margin: 10px auto;
+  //   margin-left: 20px;
+  float: left;
+}
+.popupFunctions {
+  width: 90%;
+  margin-top: 20px;
+  height: auto;
+  //   background-color: #002d58;
+  margin: auto;
+}
+.saveAndCancel {
+  width: 300px;
+  height: 50px;
+  //   background-color: #002d58;
+  display: grid;
+  grid-template-columns: auto auto;
+}
+.HeaderRight {
+  width: 20%;
+  height: 80px;
+  background-color: white;
+  margin: 10px auto;
+  //   margin-right: 20px;
+  float: right;
+}
+.Video {
+  float: left;
+  height: 480px;
+  width: 100%;
+  margin: 10px auto;
+}
+.Transcripts {
+  width: 100%;
+  height: 470px;
+  float: right;
+  //   overflow-y: auto;
+}
+.TranscriptText {
+  width: 98%;
+  height: 470px;
+  margin-right: 0px;
+  margin-left: auto;
+  overflow-y: auto;
+  height: 445px;
+}
+.TranscriptText::-webkit-scrollbar {
+  width: 13px; /* set the width of the scrollbar */
+  padding: 2px;
+}
+
+.TranscriptText::-webkit-scrollbar-thumb {
+  background-color: white; /* set the color of the scrollbar thumb */
+  border-radius: 10px; /* round the corners of the thumb */
+  padding: 10px;
+  border: 2px solid #002d58;
+}
+
+.TranscriptText::-webkit-scrollbar-track {
+  background-color: #002d58; /* set the color of the scrollbar track */
+}
+::-webkit-scrollbar-thumb {
+  width: 5px !important;
+}
+// svg {
+//   border: 0.5px solid;
+//   border-radius: 5px;
+//   width: 35px;
+//   height: 35px;
+// }
+button > svg {
+  border: 0.5px solid;
+  border-radius: 5px;
+  width: 35px;
+  height: 35px;
+}
+.TranscriptsButton {
+  min-width: 45px;
+  padding: 0px;
+  margin-right: 0px;
+  background-color: transparent;
+  border: none;
+  border-radius: 8px;
+  color: #002d58;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  height: 40px;
+}
+
+.TranscriptHeading {
+  margin-block-start: 0px;
+  margin-block-end: 0.2em;
+}
+
+.TransHeader {
+  box-sizing: border-box;
+
+  /* Auto layout */
+
+  padding: 2px 15px;
+  gap: 8px;
+
+  width: 100%;
+  height: 55px;
+
+  background: #ffffff;
+  border-width: 3px 3px 0px 2px;
+  border-style: solid;
+  border-color: #002d58;
+  box-shadow: inset 0px -4px 4px rgba(0, 45, 88, 0.25);
+  border-radius: 0px 5px 0px 0px;
+
+  /* Inside auto layout */
+}

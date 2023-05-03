@@ -2,7 +2,7 @@
   text-align: center;
 }
 body {
-  background-color: #282c34;
+  /* background-color: #282c34; */
 }
 .App-logo {
   height: 40vmin;
@@ -61,6 +61,11 @@ details {
   margin-top: 10px;
   height: 40px;
   padding: 5px;
+  border-width: 2px 2px 0px 2px;
+  border-style: solid;
+  border-color: #002d58;
+  box-shadow: 0px -1px 4px #002d58;
+  border-radius: 5px;
 }
 summary {
   margin-top: 20px;
@@ -92,9 +97,9 @@ h1 {
   color: white;
 }
 .Interactives {
-  height: 80vh;
+  height: 500px;
   overflow-x: auto;
-  margin-top: 10%;
+  /* margin-top: 10%; */
   margin-bottom: auto;
 }
 
@@ -105,9 +110,9 @@ h1 {
   width: 440px;
   height: 100px;
   font-size: large;
-  background-color: #282c34;
+  /* background-color: #282c34; */
   border: none;
-  color: #dddddd;
+  /* color: #dddddd; */
   /* margin: 40px auto; */
   font-family: Open Sans Light, Helvetica, sans-serif;
   font-size: x-large;
@@ -125,9 +130,9 @@ h1 {
 .SelectAndNext {
   /* display: grid; */
   width: 90%;
-  margin: auto;
+  /* margin: auto; */
   /* grid-template-columns: 65% 15% 20%; */
-  padding: 10px;
+  /* padding: 10px; */
 }
 
 #NextPage {
@@ -144,26 +149,29 @@ h1 {
 .videoInput {
   width: 200px;
   border-radius: 5px;
-  height: 25px;
+  height: 35px;
   border: 1px solid;
   background-color: white;
-  color: black;
+  color: #002d58;
+
 }
 .container {
   display: grid;
-  grid-template-columns: auto auto auto auto auto;
-  width: 80%;
-  margin: 30px auto;
+  grid-template-columns: 50px auto 50px 50px 50px;
+  width: 90%;
+  /* margin: 30px auto; */
+  margin: auto;
 }
 .small,
 .subIn,
 .subOut {
-  min-width: 40px;
+  width: 40px;
   padding: 0px 0px;
   margin-right: 6px;
   border-radius: 8px;
   text-decoration: none;
   cursor: pointer;
+  min-width: 0px !important;
 }
 .controls1,
 .controls2,

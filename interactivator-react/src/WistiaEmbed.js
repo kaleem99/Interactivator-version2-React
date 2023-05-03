@@ -81,7 +81,7 @@ function WistiaEmbed({ id, play, options }) {
         return video.unbind;
       }
     });
-
+    
     return () => {
       video.unbind("play", onPlayEvent);
       video.remove(); // clean up
@@ -126,7 +126,7 @@ function WistiaEmbed({ id, play, options }) {
           name="wistia_embed"
           allowFullScreen
           // msallowfullscreen="true"
-          width="90%"
+          width="98%"
           height="100%"
         ></iframe>
         {/* <button onClick={onPlayEvent}>Stop</button> */}
