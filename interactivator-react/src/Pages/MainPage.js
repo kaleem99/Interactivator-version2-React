@@ -8,6 +8,8 @@ import InteractivativeButtons from "../components/InteractiveButtons";
 import { changeVideo, fetchPageData, updateData } from "../components/Helpers";
 import VideoAndActivityRunTime from "../components/videoAndActivityRunTime";
 import { editSubtitles } from "../components/editSubtitles";
+import InteractiveTimeLines from "../components/InteractivesTimeLines";
+import FunctionPopups from "../components/FunctionPopups";
 const data = {
   preload: true,
   muted: true,
@@ -17,7 +19,7 @@ const data = {
   endVideoBehavior: "loop",
 };
 
-function MainPage() {
+function MainPage({ updateIframeData }) {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
   const setInOrOut = (type, index) => {
@@ -45,31 +47,28 @@ function MainPage() {
       },
     });
   };
+  const saveMethod = (state) => {
+    // updateData(state);
+    // setTimeout(() => {
+    //   fetchPageData();
+    changeVideo("pg4ycfs4k7", dispatch, state);
+    //   alert(100)
+    // }, 1000);
+  };
   return (
     <div className="MainPage">
-      {state.popup && (
-        <div className="Popup">
-          <div className="popupMain">
-            {editSubtitles(state, setInOrOut, setInOrOutTime, dispatch)}
-          </div>
-          <div className="popupFunctions">
-            <div className="saveAndCancel">
-              <button onClick={() => updateData(state)}>Save</button>
-              <button
-                onClick={() => dispatch({ type: "POPUP", payload: false })}
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      <FunctionPopups
+        setInOrOut={setInOrOut}
+        setInOrOutTime={setInOrOutTime}
+        saveMethod={saveMethod}
+      />
       <div className="Header">
         <div className="HeaderLeft">
           <InteractivativeButtons
             changeVideo={changeVideo}
             state={state}
             fetchPageData={fetchPageData}
+            updateIframeData={updateIframeData}
           />
         </div>
         <div className="HeaderRight">
@@ -87,7 +86,7 @@ function MainPage() {
               {
                 <button
                   className="TranscriptsButton"
-                  onClick={() => dispatch({ type: "POPUP", payload: true })}
+                  onClick={() => dispatch({ type: "POPUP", payload: true, actionType: "Transcript" })}
                 >
                   <MdOutlineMode />
                 </button>
@@ -103,7 +102,9 @@ function MainPage() {
           />
         </div>
       </div>
-      <div className="Footer"></div>
+      <div className="Footer">
+        <InteractiveTimeLines state={state} updateIframeData={updateIframeData} />
+      </div>
     </div>
   );
 }

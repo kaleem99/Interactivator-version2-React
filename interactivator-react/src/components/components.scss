@@ -26,3 +26,91 @@
   padding-top: 5px;
   color: #002d58;
 }
+
+// InteractiveTimeLines
+.TimeLineHeader {
+  display: grid;
+  grid-template-columns: auto auto;
+  height: 40px;
+  width: 130px;
+  // background-color: #002d58;
+}
+.AddInteractive {
+  min-width: 0px;
+  width: 20px;
+  height: 25px;
+  margin-top: 5px;
+  border-radius: 5px;
+}
+.AddInteractive > p {
+  margin-block-start: -7px;
+  margin-inline-end: 0px;
+  font-size: medium;
+  margin-inline-start: -4px;
+  margin-block-end: 0px;
+}
+.TimeLineP {
+  margin-block-start: 7px;
+  margin-block-end: 0px;
+  margin-inline-start: 7px;
+  margin-inline-end: 0px;
+}
+
+.TimeLineCard {
+  width: 200px;
+  // height: 100px;
+  border: 1px solid;
+  // margin-left: 20px;
+  border-radius: 5px;
+}
+.TimeLineCardBody {
+  width: 150px;
+  // height: 100px;
+  // border: 1px solid;
+  margin-left: 20px;
+  border-radius: 5px;
+  margin: 5px auto;
+  display: grid;
+  grid-template-columns: auto auto;
+}
+.TimeLineTime {
+  // margin-inline-start: 40px;
+  font-size: small;
+  margin-right: 2px;
+  margin-left: auto;
+}
+
+.TimeLineName {
+  margin-inline-start: 3px;
+  font-size: small;
+}
+.AddInteractive1,
+.AddInteractive2 {
+  min-width: 0px;
+  width: 20px;
+  height: 25px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: none;
+}
+.AddInteractive2 {
+  margin-left: auto;
+  margin-right: 0px;
+}
+.TimeLineCardBody > svg {
+  border: 0.5px solid;
+  border-radius: 4px;
+  width: 20px;
+  height: 20px;
+  // margin-left: 2px;
+  // margin-right: auto;
+}
+
+.svgRight {
+  margin-left: auto;
+  margin-right: 2px;
+}
+.svgLeft {
+  margin-left: 2px;
+  margin-right: auto;
+}

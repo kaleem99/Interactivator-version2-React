@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { searchInputVideoID } from "./Helpers";
 import "./InteractiveButtons.scss";
+import updateIframe from "./updateIframe";
 
 function InteractivativeButtons({
   state,
@@ -10,6 +11,7 @@ function InteractivativeButtons({
   fetchPageData,
   newIFunction,
   updateData,
+  updateIframeData
 }) {
   const [add, setAdd] = useState(false);
   const dispatch = useDispatch();
@@ -33,7 +35,7 @@ function InteractivativeButtons({
           value={state.videoIDInput}
           className="videoInput"
         />
-        <button onClick={() => searchInputVideoID(state, dispatch)}>
+        <button onClick={() => searchInputVideoID(state, dispatch, updateIframeData)}>
           Search
         </button>
         <select

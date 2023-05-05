@@ -74,18 +74,21 @@ function App() {
     endVideoBehavior: "loop",
   };
   const updateIframeData = () => {
-    setTimeout(() => {
-      const functionList = myObject[state.video];
-      dispatch({ type: "FUNCTION_LIST", payload: functionList.functionList });
-      // const functionList = iframeData(state.video);
-      const result = updateIframe(
-        functionList,
-        state.courseCode,
-        state.video,
-        state.jsonDataIntrAndOutro
-      );
-      document.getElementById("textDisplayCode").innerHTML = result;
-    }, 2000);
+    // setTimeout(() => {
+    console.log(100);
+    // const functionList = myObject[state.video] ? myObject[state.video] : "";
+    // console.log(functionList);
+    // console.log(myObject[state.video])
+    // dispatch({ type: "FUNCTION_LIST", payload: functionList });
+    // const functionList = iframeData(state.video);
+    const result = updateIframe(
+      state.functionList ? state.functionList : "",
+      state.courseCode,
+      state.video,
+      state.jsonDataIntrAndOutro
+    );
+    // document.getElementById("textDisplayCode").innerHTML = result;
+    // }, 2000);
   };
 
   // Using dot notation:
@@ -165,96 +168,6 @@ function App() {
     updateIframeData();
   };
 
-  function newIFunction(element, funcArgs, funcName) {
-    window._wq = window._wq || [];
-    window._wq.push({
-      id: "{{Wistia_URL}}",
-      onReady: function (video) {
-        var nextSub = false;
-        var id = video.time() + "/" + (video.time() + 5);
-        if (funcArgs) {
-          id = funcArgs[0] + "/" + funcArgs[1];
-        }
-        // var functionData = element.options[element.selectedIndex].innerHTML
-        var functionName = element.options[element.selectedIndex].innerHTML;
-        if (functionName == "Interactivity" || funcName) {
-          functionName = funcName;
-          document.getElementById("interactiveSelect").value = funcName;
-        }
-        if (element.value === "Add_Quiz") {
-          // console.log(funcName);
-          functionName = "Add_Quiz";
-        }
-        if (element.value === "Video_Interactivity_Timestamp") {
-          functionName = "Video_Interactivity_Timestamp";
-          // AddOptionVideoInteractivityQuiz()
-          // setVideoTime(video.time());
-        }
-        let newIFunc = document.createElement("div");
-        newIFunc.id = id;
-        newIFunc.className = "container";
-        newIFunc.innerHTML =
-          `
-        <div class="controls">
-        <button title="move in point" tabindex="-1" class="small" type="button" onclick="setIn(this.parentNode.parentNode);">(</button>
-        <button title="move out point" tabindex="-1" class="small" type="button" onclick="setOut(this.parentNode.parentNode);">)</button>
-        </div>
-        <div class="function" ondblclick="go(this.parentNode)">
-          <h2>` +
-          functionName +
-          `</h2>
-          </div>
-          <div class="controls">
-            <button tabindex="-1" class="small" type="button" onclick="removeContainer(this.parentNode.parentNode)"title="Delete">x</button>
-            </div>
-            `;
-        var IFcount = document.getElementById("IFcount");
-        IFcount.innerHTML = parseInt(IFcount.innerHTML) + 1;
-        var functionDiv = newIFunc.getElementsByClassName("function")[0];
-        functionDiv.appendChild(
-          document
-            .getElementsByClassName(
-              "Ifunction_" + functionName + "_variables"
-            )[0]
-            .cloneNode(true)
-        );
-
-        if (funcArgs) {
-          newIFunc.id = funcArgs[0] + "/" + funcArgs[1];
-          var inputs = [];
-          for (
-            let f = 0;
-            f < newIFunc.getElementsByTagName("input").length;
-            f++
-          ) {
-            inputs.push(newIFunc.getElementsByTagName("input")[f]);
-          }
-          for (
-            let f = 0;
-            f < newIFunc.getElementsByTagName("select").length;
-            f++
-          ) {
-            inputs.push(newIFunc.getElementsByTagName("select")[f]);
-          }
-
-          for (let j = 0; j < funcArgs.length - 2; j++) {
-            var funcValue = funcArgs[j + 2];
-            inputs[j].value = funcValue;
-          }
-        }
-        // setIn(newIFunc, funcArgs);
-        document.getElementById("defaultOption").selected = true;
-        var functionToggle = document.getElementById("functionToggle");
-        if (functionToggle.className == "off") {
-          newIFunc.style.display = "none";
-        }
-        if (newIFunc.getElementsByTagName("input").len > 0) {
-          newIFunc.getElementsByTagName("input")[0].focus();
-        }
-      },
-    });
-  }
-
   const formattingSubtitles = (data) => {
     let dataArr = data.split("\n");
     const d1 = dataArr.shift();
@@ -262,41 +175,6 @@ function App() {
     const d3 = dataArr.pop();
     return dataArr.join(" ");
   };
-
-  // function updateIFunctionsFromList() {
-  //  window._wq = window._wq || [];
-  //   window._wq.push({
-  //       id: '{{Wistia_URL}}',
-  //       onReady: function (video) {
-  //         let functionList = document.getElementById('functionList').innerHTML;
-  //         if (functionList === 'new') {
-  //           functionList = `logo("0","${video.duration()}","${UPLogoData[0][1]}");lowerThird("5","12","${lwrThirdData[0][0]}","left");lowerThird("${(video.duration() - 12)}","${(video.duration() - 5)}","${lwrThirdData[0][0]}","left");`;
-  //           document.getElementById('functionList').innerHTML = functionList;
-  //         }
-  //         const functionListArray = functionList.split(';');
-
-  //         // remove all elements of class function
-  //         const functions = document.getElementsByClassName('function');
-  //         for (let i = 0; i < functions.length; i++) {
-  //           functions[i].parentElement.remove();
-  //         }
-
-  //         // loop through functionListArray and add functions
-  //         for (let i = 0; i < functionListArray.length; i++) {
-  //           if (functionListArray[i] !== '') {
-  //             const funcName = functionListArray[i].split('(')[0];
-  //             const funcArgs = functionListArray[i].split('(')[1].slice(1, -2).split('","');
-  //             document.getElementById('interactiveSelect').value = funcName;
-  //             newIFunction(document.getElementById('interactiveSelect'), funcArgs, funcName);
-  //             console.log(`added function ${funcName}`);
-  //           }
-  //         }
-  //         console.log(functionListArray);
-  //       }
-  //     });
-  //     updateIframe(functionList);
-  //   return null;
-  // }
 
   return (
     // <div style={styles} className="Interactivator">
@@ -460,7 +338,7 @@ function App() {
     //   </div>
     // </div>
     state.videoData.length > 0 ? (
-      <MainPage />
+      <MainPage updateIframeData={updateIframeData} />
     ) : (
       <Lottie options={defaultOptions} height={400} width={400} />
     )

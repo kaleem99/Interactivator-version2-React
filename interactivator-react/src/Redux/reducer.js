@@ -1,5 +1,5 @@
 import { actionsObject } from "./actionTypes";
-
+import logsFile from "../logs.json";
 const initialState = {
   video: "",
   videoData: [],
@@ -11,37 +11,52 @@ const initialState = {
   videoIDInput: "",
   jsonDataIntrAndOutro: "",
   newSubtitle: "",
-  functionList: "",
+  functionList: [],
   InteractivityState: false,
   popup: false,
+  PopupType: "",
 };
 // const url = "https://api.wistia.com/v1/medias.json";
-
+const fetchLogsFile = (action) => {
+  const objectFile = logsFile[action.payload[0].hashed_id];
+  let resultTimeLines = [];
+  if (objectFile && objectFile.functionList.length > 0) {
+    resultTimeLines = objectFile.functionList
+      .split(";")
+      .filter((data) => data !== "");
+  }
+  return resultTimeLines;
+};
 export const fetchVideoReducer = (state = initialState, action) => {
   let courseCode = "";
-
+  let resultTimeLines;
   switch (action.type) {
     case "FETCH_VIDEO":
       courseCode = action.payload[0].project.name.trim("").replace(/\s/gi, "-");
+      resultTimeLines = fetchLogsFile(action);
       return {
         ...state,
         videoData: action.payload,
         video: action.payload[0].hashed_id,
         videoName: action.payload[0].name,
-        // courseCode: courseCode,
+        // courseCode: courseCode,]
+        functionList: resultTimeLines,
         jsonDataIntrAndOutro: action.payload.jsonData,
       };
     case "CHANGE_VIDEO":
+      // resultTimeLines = fetchLogsFile(action);
       return {
         ...state,
         video: action.payload.videoID,
         videoName: action.payload.name,
         // jsonDataIntrAndOutro: jsonData,
+        // functionList: resultTimeLines,
       };
     case "POPUP":
       return {
         ...state,
         popup: action.payload,
+        PopupType: action.actionType,
       };
     case "FETCH_SUBTITLE":
       function getSecs(input) {
@@ -109,27 +124,29 @@ export const fetchVideoReducer = (state = initialState, action) => {
       };
     case "CHANGE_NEXT_PAGE_DATA":
       state.Page += 1;
-      console.log(state.Page);
       return {
         ...state,
         Page: state.Page,
       };
     case "CHANGE_PREVIOUS_PAGE_DATA":
       state.Page -= 1;
-      console.log(state.Page);
       return {
         ...state,
         Page: state.Page,
       };
     case "CUSTOM_VIDEO_INPUT":
+      resultTimeLines = fetchLogsFile({
+        payload: [{ hashed_id: action.payload }],
+      });
+
       return {
         ...state,
         videoIDInput: action.payload,
+        functionList: resultTimeLines,
       };
     case "FETCH_CUSTOM_VIDEO_INPUT":
       courseCode = action.payload.project.name.trim("").replace(/\s/gi, "-");
-      console.log(courseCode);
-      console.log(action.payload);
+
       return {
         ...state,
         // courseCode: courseCode,
@@ -142,17 +159,7 @@ export const fetchVideoReducer = (state = initialState, action) => {
       // const index = action.payload.index;
       // const newData = state.subtitle.split(/\n\s*\n/);
       // newData[index] = '1\n00:00:10,120 --> 00:00:15,640\nIn 2009, a man named Cristopher Coach\nbought 5,000,000 bitcoins on a whim. 200';
-      // // console.log(newData.join(","))
-      // console.log(newData[index])
-      // console.log(index)
-      // console.log(state.subtitle.split("\n\n"))
-      // console.log(newCaptions)
 
-      // console.log(action.payload.newCaption)
-      // console.log(action.payload.index)
-      for (let items of state.subtitle) {
-        console.log(items.join("\n"));
-      }
       return {
         ...state,
         // newSubtitle: newData
@@ -160,12 +167,16 @@ export const fetchVideoReducer = (state = initialState, action) => {
         // jsonDataIntrAndOutro: jsonData,
       };
     case "FUNCTION_LIST":
-      const functionList = action.payload
-        .split(";")
-        .filter((arr) => arr !== "");
+      const functionList = action.payload;
+      let result = "";
+      if (functionList.functionList) {
+        result = functionList.functionList
+          .split(";")
+          .filter((arr) => arr !== "");
+      }
       return {
         ...state,
-        functionList: functionList,
+        functionList: result,
       };
     default:
       return state;

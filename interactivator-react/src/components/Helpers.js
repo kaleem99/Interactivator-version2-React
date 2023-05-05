@@ -58,6 +58,7 @@ const updateData = async (state) => {
   }
 };
 const changeVideo = async (videoID, dispatch, state) => {
+  alert(200);
   const videoIDNAME = state.videoData.filter(
     (data) => data.name === videoID && data.hashed_id
   );
@@ -82,7 +83,7 @@ const fetchPageData = async (dispatch, state) => {
   dispatch({ type: "FETCH_SUBTITLE", payload: subtitles[0].text });
 };
 
-const searchInputVideoID = async (state, dispatch) => {
+const searchInputVideoID = async (state, dispatch, updateIframeData) => {
   const url = `https://api.wistia.com/v1/medias/${state.videoIDInput}.json`;
   const result = await fetch(url, options).then((data) => data.json());
   if (result.error) {
@@ -97,6 +98,6 @@ const searchInputVideoID = async (state, dispatch) => {
   const subtitles = await fetch(url2, options).then((data) => data.json());
   dispatch({ type: "FETCH_SUBTITLE", payload: subtitles[0].text });
   dispatch({ type: "FETCH_CUSTOM_VIDEO_INPUT", payload: result });
-  // updateIframeData();
+  updateIframeData();
 };
 export { updateData, changeVideo, fetchPageData, searchInputVideoID };

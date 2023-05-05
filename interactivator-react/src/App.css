@@ -153,7 +153,6 @@ h1 {
   border: 1px solid;
   background-color: white;
   color: #002d58;
-
 }
 .container {
   display: grid;
@@ -274,8 +273,18 @@ input {
 .Ifunction_heading_variables {
   width: 480px;
   min-width: 500px;
+  height: 150px;
   background-color: #62a7d1;
   padding: 0.5em;
-  border-radius: 1em;
+  border-radius: 1em; 
   color: #1d1e22;
+  /* margin: auto; */
+  /* margin-top: auto; */
+  /* margin-bottom: auto; */
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: auto;
+  right: 0;
+  bottom: 0;
 }

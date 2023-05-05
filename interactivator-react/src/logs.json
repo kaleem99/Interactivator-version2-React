@@ -1,7 +1,7 @@
 {
   "pxn2ycze9k": {
     "chapterlist": [],
-    "functionList": "heading(\"10.104353\",\"15.104353\",\"Testing Heading.\",\"0\",\"left\");",
+    "functionList": "heading(\"10.104353\",\"15.104353\",\"Testing Heading.\",\"0\",\"left\");heading(\"20.591274\",\"25.591274\",\"Testing 123\",\"0\",\"right\")",
     "newLines": ["40.797/46.492", "96.989/102.91"],
     "speakers": ["5.35/PHIL WOODS"],
     "notes": []
