@@ -98,6 +98,6 @@ const searchInputVideoID = async (state, dispatch, updateIframeData) => {
   const subtitles = await fetch(url2, options).then((data) => data.json());
   dispatch({ type: "FETCH_SUBTITLE", payload: subtitles[0].text });
   dispatch({ type: "FETCH_CUSTOM_VIDEO_INPUT", payload: result });
-  updateIframeData();
+  // updateIframeData();
 };
 export { updateData, changeVideo, fetchPageData, searchInputVideoID };

@@ -15,6 +15,7 @@ const initialState = {
   InteractivityState: false,
   popup: false,
   PopupType: "",
+  index: 0,
 };
 // const url = "https://api.wistia.com/v1/medias.json";
 const fetchLogsFile = (action) => {
@@ -57,6 +58,7 @@ export const fetchVideoReducer = (state = initialState, action) => {
         ...state,
         popup: action.payload,
         PopupType: action.actionType,
+        index: action.index,
       };
     case "FETCH_SUBTITLE":
       function getSecs(input) {

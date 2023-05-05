@@ -3,14 +3,14 @@ function updateIframe(funcList, courseCode, video, jsonData) {
   let intro = "";
   let outro = "";
   let chapter = "";
-  for (let media of jsonData["medias"]) {
-    if (media["name"] === courseCode.split("-")[0] + " Intro") {
-      intro = media["hashed_id"];
-    }
-    if (media["name"] === courseCode.split("-")[0] + " Outro") {
-      outro = media["hashed_id"];
-    }
-  }
+  // for (let media in jsonData["medias"]) {
+  //   if (media["name"] === courseCode.split("-")[0] + " Intro") {
+  //     intro = media["hashed_id"];
+  //   }
+  //   if (media["name"] === courseCode.split("-")[0] + " Outro") {
+  //     outro = media["hashed_id"];
+  //   }
+  // }
   const { functionList, chapterlist } = funcList;
   if (chapterlist === [] || chapterlist === undefined) {
     chapter = "[]";
@@ -34,6 +34,7 @@ function updateIframe(funcList, courseCode, video, jsonData) {
     name="wistia_embed" allowfullscreen="" mozallowfullscreen="" webkitallowfullscreen="" 
     oallowfullscreen="" msallowfullscreen="" style="zoom: 1;"&gt;&lt;/iframe&gt;
     `;
+  console.log(iFrame);
   return iFrame;
 }
 

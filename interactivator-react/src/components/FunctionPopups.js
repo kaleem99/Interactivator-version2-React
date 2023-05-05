@@ -12,16 +12,13 @@ function FunctionPopups({ setInOrOut, setInOrOutTime, saveMethod }) {
       body = editSubtitles(state, setInOrOut, setInOrOutTime, dispatch);
       break;
     case "heading":
-      const result = updateIFunctionsFromList(state.functionList);
-      console.log(result);
-      console.log("10".repeat(100));
-      body = (
-        <div
-          className="Ifunction_heading_variables"
-          dangerouslySetInnerHTML={{ __html: result.innerHTML }}
-        ></div>
-      );
+      const result = updateIFunctionsFromList(state.functionList, state);
+      // body = (
+
+      // );
       break;
+    case "Quiz":
+      updateIFunctionsFromList(state.functionList, state);
     default:
       body = "";
       break;

@@ -46,20 +46,20 @@ function App() {
 
   const setBtnState = (e) => {
     if (e.target.value === "Subtitles") {
-      if (e.target.className === "btn") {
-        e.target.className = "btn on";
+      if (e.target.classNameName === "btn") {
+        e.target.classNameName = "btn on";
         dispatch({ type: "CHANGE_SUBTITLE_STATE", payload: true });
       } else {
         dispatch({ type: "CHANGE_SUBTITLE_STATE", payload: false });
-        e.target.className = "btn";
+        e.target.classNameName = "btn";
       }
     } else if (e.target.value === "Interactivities") {
-      if (e.target.className === "btn") {
-        e.target.className = "btn on";
+      if (e.target.classNameName === "btn") {
+        e.target.classNameName = "btn on";
         dispatch({ type: "CHANGE_INTERACTIVITIES_STATE", payload: true });
       } else {
         dispatch({ type: "CHANGE_INTERACTIVITIES_STATE", payload: false });
-        e.target.className = "btn";
+        e.target.classNameName = "btn";
       }
     } else if (e.target.value === "Save") {
       updateData(state);
@@ -73,23 +73,6 @@ function App() {
     silentAutoPlay: true,
     endVideoBehavior: "loop",
   };
-  const updateIframeData = () => {
-    // setTimeout(() => {
-    console.log(100);
-    // const functionList = myObject[state.video] ? myObject[state.video] : "";
-    // console.log(functionList);
-    // console.log(myObject[state.video])
-    // dispatch({ type: "FUNCTION_LIST", payload: functionList });
-    // const functionList = iframeData(state.video);
-    const result = updateIframe(
-      state.functionList ? state.functionList : "",
-      state.courseCode,
-      state.video,
-      state.jsonDataIntrAndOutro
-    );
-    // document.getElementById("textDisplayCode").innerHTML = result;
-    // }, 2000);
-  };
 
   // Using dot notation:
 
@@ -97,45 +80,45 @@ function App() {
     // console.log(state.videoName);
     return (
       <div>
-        <h2 className="VideoName">{state.videoName}</h2>
+        <h2 classNameName="VideoName">{state.videoName}</h2>
 
         <div>
           <button
             value={"Transcript"}
             onClick={(e) => setBtnState(e)}
-            className="btn"
+            classNameName="btn"
           >
             Transcript
           </button>
           <button
             value={"Interactivities"}
             onClick={(e) => setBtnState(e)}
-            className="btn"
+            classNameName="btn"
           >
             Interactivities
           </button>
           <button
             value={"Subtitles"}
             onClick={(e) => setBtnState(e)}
-            className="btn"
+            classNameName="btn"
           >
             Subtitles
           </button>
           <button
             value={"Chapters"}
             onClick={(e) => setBtnState(e)}
-            className="btn"
+            classNameName="btn"
           >
             Chapters
           </button>
         </div>
         {/* <h1>{state.subtitleState.toString()}</h1> */}
         <div
-          className="wistia_responsive_padding"
+          classNameName="wistia_responsive_padding"
           style={{ padding: "56.25% 0 0 0", position: "relative" }}
         >
           <div
-            className="wistia_responsive_wrapper"
+            classNameName="wistia_responsive_wrapper"
             style={{
               height: "100%",
               left: "0",
@@ -165,7 +148,6 @@ function App() {
     const subtitles = await fetch(url2, options).then((data) => data.json());
     dispatch({ type: "FETCH_SUBTITLE", payload: subtitles[0].text });
     dispatch({ type: "FETCH_CUSTOM_VIDEO_INPUT", payload: result });
-    updateIframeData();
   };
 
   const formattingSubtitles = (data) => {
@@ -177,171 +159,131 @@ function App() {
   };
 
   return (
-    // <div style={styles} className="Interactivator">
-    //   {state.videoData.length > 0 ? (
-    //     <div className="videoDiv">
-    //     <InteractivativeButtons
-    //         state={state}
-    //         changeVideo={changeVideo}
-    //         setBtnState={setBtnState}
-    //         fetchPageData={fetchPageData}
-    //         newIFunction={newIFunction}
-    //         updateData={updateData}
-    //       />
-    //       {renderVideo()}
-    //       <input
-    //         type={"text"}
-    //         onChange={(e) =>
-    //           dispatch({ type: "CUSTOM_VIDEO_INPUT", payload: e.target.value })
-    //         }
-    //         placeholder={"course ID"}
-    //         value={state.videoIDInput}
-    //         className="videoInput"
-    //       />
-    //       <button onClick={() => searchInputVideoID()}>Search</button>
-    //       <details>
-    //         <summary>Embed Code</summary>
-    //         <div id="textDisplayCode">Hello</div>
-    //         <div
-    //           id="iFrame"
-    //           // contentEditable="true"
-    //           // onClick="copyTextToClipBoard()"
-    //           // onInput="reverseUpdate()"
-    //         ></div>
-    //       </details>
-    //       {updateIframeData()}
-    //     </div>
-    //   ) : (
-    //     <Lottie options={defaultOptions} height={400} width={400} />
-    //   )}
-    //   <div className="Interactives">
-    //     {state.subtitle.length > 0 &&
-    //       state.subtitleState === true &&
-    //       state.subtitle.map((data, i) => {
-    //         return (
-    //           <div
-    //             class="container"
-    //             onMouseOver={() => setInOrOut("visible", i)}
-    //             onMouseOut={() => setInOrOut("hidden", i)}
-    //             style={{ display: "flex;" }}
-    //           >
-    //             <div class="controls1">
-    //               <button
-    //                 title="move in point"
-    //                 tabindex="-1"
-    //                 class="subIn"
-    //                 type="button"
-    //                 // onclick="setInOrOut(this,false)"
-    //               >
-    //                 (
-    //               </button>
-    //               <button
-    //                 title="move out point"
-    //                 tabindex="-1"
-    //                 class="subOut"
-    //                 type="button"
-    //                 // onclick="setInOrOut(this,true)"
-    //               >
-    //                 )
-    //               </button>
-    //             </div>
-    //             <textarea
-    //               // onblur="resetButton(this)"
-    //               // onselect="symbolSwitch(this)"
-    //               // onmouseup="symbolSwitch(this)"
-    //               class="TextAreaSubtitles"
-    //               // onkeydown="autoScrollOff()"
-    //               // onclick="autoScrollOff()"
-    //               onChange={(e) =>
-    //                 dispatch({
-    //                   type: "UPDATING_CAPTIONS",
-    //                   payload: {
-    //                     index: i,
-    //                     newCaption: e.target.value,
-    //                     id: e.target.id,
-    //                   },
-    //                 })
-    //               }
-    //               id={`${data[0]}/${data[1]}`}
-    //               name={`${data[0]}/${data[1]}`}
-    //             >
-    //               {data[2]}
-    //             </textarea>
-    //             <div class="controls2">
-    //               <button
-    //                 tabindex="-1"
-    //                 class="small"
-    //                 type="button"
-    //                 // onclick="go(this.parentNode.parentNode.getElementsByTagName('textarea')[0])"
-    //                 title="Go to this point in the video"
-    //                 onClick={() => setInOrOutTime(data[0])}
-    //               >
-    //                 ←
-    //               </button>
-    //               <button
-    //                 tabindex="-1"
-    //                 id="toggle_newLine42.8/47.009"
-    //                 class="small"
-    //                 type="button"
-    //                 // onclick="check('newLine42.8/47.009')"
-    //                 title="New paragraph"
-    //               >
-    //                 ↵
-    //               </button>
-    //               {/* <input
-    //         style={{ display: "none;" }}
-    //         tabindex="-1"
-    //         id="newLine42.8/47.009"
-    //         name="newLine42.8/47.009"
-    //         type="checkbox"
-    //       /> */}
-    //             </div>
-    //             <div class="controls3">
-    //               <button
-    //                 tabindex="-1"
-    //                 class="small"
-    //                 type="button"
-    //                 // onclick="makeSpeakerSelect(this)"
-    //                 title="Mark speaker"
-    //               >
-    //                 ⁚
-    //               </button>
-    //               <button
-    //                 tabindex="-1"
-    //                 class="small"
-    //                 type="button"
-    //                 // onclick="makeNotes(this)"
-    //                 title="Make notes"
-    //               >
-    //                 ✎
-    //               </button>
-    //             </div>
-    //             <div class="controls4">
-    //               <button
-    //                 tabindex="-1"
-    //                 class="small"
-    //                 type="button"
-    //                 // onclick="removeContainer(this.parentNode.parentNode)"
-    //                 title="Delete"
-    //               >
-    //                 x
-    //               </button>
-    //             </div>
-    //           </div>
-    //         );
-    //       })}
-    //     {state.functionList.length > 0 &&
-    //       state.InteractivityState === true &&
-    //       state.functionList.map((funct) => {
-    //         return <RenderFunction func={funct} state={state} />;
-    //       })}
-    //   </div>
-    // </div>
-    state.videoData.length > 0 ? (
-      <MainPage updateIframeData={updateIframeData} />
-    ) : (
-      <Lottie options={defaultOptions} height={400} width={400} />
-    )
+    <>
+      {state.videoData.length > 0 ? (
+        <MainPage />
+      ) : (
+        <Lottie options={defaultOptions} height={400} width={400} />
+      )}
+      <div style={{ display: "none" }} className="Ifunction_heading_variables">
+        <input
+          onChange="updateFunctionList()"
+          className="heading_text"
+          type="text"
+          placeholder="heading"
+        />
+        <label>offset</label>
+        <input
+          onChange="updateFunctionList()"
+          className="heading_offset"
+          type="range"
+          min="-50"
+          max="50"
+        />
+        <select
+          style={{ width: "auto" }}
+          onChange="updateFunctionList()"
+          className="heading_Left_or_Right"
+          name="heading_Left_or_Right"
+          id="heading_Left_or_Right"
+        >
+          <option value="left">left</option>
+          <option value="right">right</option>
+        </select>
+      </div>
+      <div style={{ display: "none" }} className="Ifunction_Add_Quiz_variables">
+        <span className="QTKDff">Multiple choice</span>
+        <section id="section"></section>
+        <div className="QuizInput Ifunction_Add_Quiz" id="QuizInput">
+          <h2>Please populate input to add quiz</h2>
+          <label>Question</label>
+          <br />
+          <input
+            type="text"
+            className="inputQuestion Add_Quiz_text"
+            id="QInput1"
+            onChange="updateFunctionList()"
+          />
+          <br />
+          <div className="OptionsAndVideo">
+            <div className="Inputs Add_Quiz_text">
+              <label>Option 1</label>
+              <input
+                className="inputQuestion"
+                type="text"
+                id="QInput"
+                onChange="updateFunctionList()"
+              />
+            </div>
+            <div>
+              <label>Option 2</label>
+              <input
+                className="inputQuestion"
+                type="text"
+                id="QInput"
+                onChange="updateFunctionList()"
+              />
+            </div>
+            <div>
+              <label>Option 3</label>
+              <input
+                className="inputQuestion"
+                type="text"
+                id="QInput"
+                onChange="updateFunctionList()"
+              />
+            </div>
+            <div>
+              <label>Option 4</label>
+              <input
+                className="inputQuestion"
+                type="text"
+                id="QInput"
+                onChange="updateFunctionList()"
+              />
+            </div>
+            <div>
+              <label>Option 5</label>
+              <input
+                className="inputQuestion"
+                type="text"
+                id="QInput"
+                onChange="updateFunctionList()"
+              />
+            </div>
+            <div>
+              {" "}
+              <label>Option 6</label>
+              <input
+                className="inputQuestion"
+                type="text"
+                id="QInput"
+                onChange="updateFunctionList()"
+              />
+            </div>
+          </div>
+          <div id="Inputs Add_Quiz"></div>
+          <br />
+          <label>Please choose correct option Answer</label>
+          <select
+            onChange="updateFunctionList()"
+            name="cars"
+            id="SelectOptions"
+          >
+            <option value="none" selected>
+              None selected
+            </option>
+            <option value="Option 1">Option 1</option>
+            <option value="Option 2">Option 2</option>
+            <option value="Option 3">Option 3</option>
+            <option value="Option 4">Option 4</option>
+            <option value="Option 5">Option 5</option>
+            <option value="Option 6">Option 6</option>
+          </select>
+          <div id="btnsDiv"></div>
+        </div>
+      </div>
+    </>
   );
 }
 

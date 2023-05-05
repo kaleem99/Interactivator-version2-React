@@ -5,6 +5,26 @@ import { newIFunction } from "./Functions";
 import { MdOutlineModeEdit, MdDelete } from "react-icons/md";
 
 function InteractiveTimeLines({ updateIframeData, state }) {
+  // let functionListArray = functionList.split(";");
+  // var funcName = functionListArray[i].split("(")[0];
+  // var funcArgs = functionListArray[i];
+  // for (let i = 0; i < functionListArray.length; i++) {
+  //   if (functionListArray[i] !== "") {
+  //     // async function update() {
+  //     var funcName = functionListArray[i].split("(")[0];
+  //     var funcArgs = functionListArray[i]
+  //       .split("(")[1]
+  //       .slice(1, -2)
+  //       .split('","');
+  //     document.getElementById("interactiveSelect").value = funcName;
+  //     newIFunction(
+  //       document.getElementById("interactiveSelect"),
+  //       funcArgs,
+  //       funcName
+  //     );
+  //     console.log("added function " + funcName);
+  //   }
+  // }
   // const state = useSelector((state) => state);
   const dispatch = useDispatch();
   const [add, setAdd] = useState(false);
@@ -41,7 +61,10 @@ function InteractiveTimeLines({ updateIframeData, state }) {
             <button type="button" onClick="newChap()">
               Chapter
             </button> */}
-            <select id="interactiveSelect" onChange={(e) => newIFunction(e)}>
+            <select
+              id="interactiveSelect"
+              // onChange={(e) => newIFunction(e, funcArgs, funcName, state)}
+            >
               <option id="defaultOption" selected disabled>
                 <p>Interactivity</p>
               </option>
@@ -65,7 +88,7 @@ function InteractiveTimeLines({ updateIframeData, state }) {
       </div>
       <div className="TimeLineBody">
         {state.functionList.length > 0 &&
-          state.functionList.map((name) => (
+          state.functionList.map((name, i) => (
             <div className="TimeLineCard">
               <div className="TimeLineCardBody">
                 <p className="TimeLineName">{formatFunctionName(name)}</p>
@@ -79,6 +102,7 @@ function InteractiveTimeLines({ updateIframeData, state }) {
                       type: "POPUP",
                       payload: true,
                       actionType: formatFunctionName(name),
+                      index: i,
                     })
                   }
                 />
