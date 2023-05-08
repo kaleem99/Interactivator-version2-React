@@ -15,6 +15,7 @@ const initialState = {
   InteractivityState: false,
   popup: false,
   PopupType: "",
+  functArgs: "",
   index: 0,
 };
 // const url = "https://api.wistia.com/v1/medias.json";

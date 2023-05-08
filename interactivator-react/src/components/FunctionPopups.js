@@ -1,9 +1,11 @@
 import { useSelector, dispatch, useDispatch } from "react-redux";
 import { editSubtitles } from "./editSubtitles";
 import { updateIFunctionsFromList } from "./Functions";
+import AddFuncArgsToPopup from "./AddFunctArgsToPopup";
 
 function FunctionPopups({ setInOrOut, setInOrOutTime, saveMethod }) {
   const state = useSelector((state) => state);
+  let result = "";
   const dispatch = useDispatch();
   let body = "";
   console.log(state.PopupType);
@@ -12,13 +14,25 @@ function FunctionPopups({ setInOrOut, setInOrOutTime, saveMethod }) {
       body = editSubtitles(state, setInOrOut, setInOrOutTime, dispatch);
       break;
     case "heading":
-      const result = updateIFunctionsFromList(state.functionList, state);
-      // body = (
-
-      // );
+      result = updateIFunctionsFromList(state.functionList, state);
+      body = (
+        <AddFuncArgsToPopup
+          functionListArray={result}
+          state={state}
+          name={state.PopupType}
+        />
+      );
       break;
     case "Quiz":
-      updateIFunctionsFromList(state.functionList, state);
+      result = updateIFunctionsFromList(state.functionList, state);
+      body = (
+        <AddFuncArgsToPopup
+          functionListArray={result}
+          state={state}
+          name={state.PopupType}
+        />
+      );
+      break;
     default:
       body = "";
       break;

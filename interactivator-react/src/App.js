@@ -165,7 +165,7 @@ function App() {
       ) : (
         <Lottie options={defaultOptions} height={400} width={400} />
       )}
-      <div style={{ display: "none" }} className="Ifunction_heading_variables">
+      {/* <div style={{ display: "none" }} className="Ifunction_heading_variables">
         <input
           onChange="updateFunctionList()"
           className="heading_text"
@@ -282,7 +282,7 @@ function App() {
           </select>
           <div id="btnsDiv"></div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

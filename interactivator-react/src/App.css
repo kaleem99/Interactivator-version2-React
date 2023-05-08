@@ -192,21 +192,28 @@ h1 {
 .QuizInput {
   min-width: 480px;
   height: auto;
-  background-color: #62a7d1;
-  margin: 30px auto;
+  /* background-color: #62a7d1; */
+  /* margin: 94px auto; */
   border: 1px solid;
   border-radius: 10px;
   text-align: center;
-  color: white;
+  border-width: 3px 3px 0px 0px;
+  border-style: solid;
+  border-color: #002d58;
+  box-shadow: -4px 4px 4px rgba(0, 45, 88, 0.5);
+  /* color: white; */
 }
-.Ifunction_AddOption_variables {
+.Ifunction_Add_Quiz_variables {
   /* display: none; */
+  height: 460px;
+  /* margin-bottom: -100px; */
+  margin: 100px auto;
 }
 input {
   width: 200px;
   border-radius: 5px;
   height: 25px;
-  border: 1px solid;
+  border: 0.25px solid #002d58;
   background-color: white;
   color: #1e252b;
 }
@@ -229,6 +236,29 @@ input {
   margin: auto;
   width: 90%;
 }
+.InputsQuestionsNumber {
+  width: 80%;
+  height: 90%;
+  border: 3px solid #002d58;
+  /* color: white; */
+  border-radius: 5px;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: auto;
+  margin-left: auto;
+  min-width: 0px;
+  padding: 0px;
+}
+.InputsQuestionsNumber > text {
+  line-height: 33px;
+}
+.textQuiz {
+  width: 90%;
+  height: 80px;
+  /* background-color: #002d58; */
+  margin: auto;
+  text-align: left;
+}
 #btnsDiv {
   display: grid;
   grid-template-columns: auto auto;
@@ -236,10 +266,20 @@ input {
   margin: 1% auto;
 }
 .inputQuestion {
-  width: 130px;
+  width: 90%;
   height: 40px;
 }
-
+.inputsActive {
+  background: #002d58;
+  color: white;
+}
+.Add_Quiz_text {
+  display: grid;
+  grid-template-columns: 60px auto;
+}
+/* .Add_Quiz_text:nth-child(1) {
+  margin-top: 10px;
+} */
 #body {
   position: absolute;
   top: 20px;
@@ -257,18 +297,23 @@ input {
   height: 700px;
 }
 #QInput1 {
-  width: 70%;
+  width: 90%;
+  height: 100px;
   margin: 0px auto;
+  border: 2px solid #002d58;
 }
 #iFrameQuiz {
   display: none;
 }
 .OptionsAndVideo {
   display: grid;
-  width: 300px;
+  width: 90%;
+  padding-top: 10px;
   grid-template-columns: auto auto;
   grid-gap: 10px;
-  margin: auto;
+  margin: 20px auto;
+  border: 2px solid #002d58;
+  border-radius: 5px 5px 5px 0px;
 }
 .Ifunction_heading_variables {
   width: 480px;
@@ -276,7 +321,7 @@ input {
   height: 150px;
   background-color: #62a7d1;
   padding: 0.5em;
-  border-radius: 1em; 
+  border-radius: 1em;
   color: #1d1e22;
   /* margin: auto; */
   /* margin-top: auto; */
